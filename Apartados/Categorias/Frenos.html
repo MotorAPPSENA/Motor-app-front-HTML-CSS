@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aceites</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
+		<link rel="stylesheet" href="../../style.css">
+        <link rel="stylesheet" href="../../Estilo Apartados/StyleTablas.css">
+</head>
+<body>
+	<!-- Aqui Comienza nuestra barra de navagacion responsive-->
+    <nav>
+        <div class="mobile">
+            <div class="header">
+                <div class="logo"><a class="sinHover"href="../../Apartados/Paginas/Nosotros.html"> <img class="tamañoLogo" src="../../Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"> </a></div>
+                <div class="more">
+					<button id="bMore">
+						<span class="material-symbols-outlined">menu</span>
+					</button>
+				</div>
+            </div>
+				<div  id="links" class="links">
+					<div class="search-bar-mobile">
+						<input type="text">
+						<div class="actions">
+							<button>
+								<span class="material-symbols-outlined">mic</span>
+							</button>
+							<button>
+								<span class="material-symbols-outlined">search</span>
+							</button>
+						</div>
+					</div>
+					<a href="../../index.html">Inicio</a>
+					<a href="../../Apartados/Paginas/MisPedidos.html">Mi perfil</a>
+					<a href="../../Apartados/Paginas/Login.html">Iniciar Sesion</a>
+					<a href="../../Apartados/Paginas/Registro.html">Registrarse</a>
+				</div>	
+		</div>
+
+        	<div class="desktop">
+            	<div class="logo"><a class="sinHover" href="../../Apartados/Paginas/Nosotros.html"><img class="tamañoLogo" src="../../Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a></div>
+				<div class="primary">
+					<a href="../../index.html">Inicio</a>
+					<a href="../../Apartados/Paginas/MisPedidos.html">Mi perfil</a>
+				</div>
+				<div class="secondary full">
+					<div class="search-bar">
+						<input type="text">
+						<div class="actions">
+							<button>
+								<span class="material-symbols-outlined">mic</span>
+							</button>
+							<button>
+								<span class="material-symbols-outlined">search</span>
+							</button>
+						</div>
+					</div>
+					<a href="../../Apartados/Paginas/Login.html">Iniciar Sesion</a>
+					<a href="../../Apartados/Paginas/Registro.html">Registrarse</a>
+				</div>
+				<div class="secondary mini">
+					<a href="#" class="more">Menu</a>
+					<div class="submenu">
+						<div class="search-bar">
+							<input type="text">
+							<div class="actions">
+								<button>
+									<span class="material-symbols-outlined">mic</span>
+								</button>
+								<button>
+									<span class="material-symbols-outlined">search</span>
+								</button>
+							</div>
+						</div>
+						<a href="../../Apartados/Paginas/Login.html">Iniciar Sesion</a>
+						<a href="../../Apartados/Paginas/Registro.html">Registrarse</a>
+					</div>
+				</div>
+			</div>
+    		</nav>
+		<script>
+			const bMore = document.querySelector("#bMore");
+			const links = document.querySelector("#links")
+
+			bMore.addEventListener("click", (e) => {
+				links.classList.toggle("collapsed");	
+			});
+		</script>
+		<!-- Aqui finaliza nuestra barra de navagacion responsive-->
+        <!-- Tabla Aceites-->
+        <table>
+            <caption>Frenos</caption>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Imagen</th>
+                    <th>Marca</th>
+                    <th>Referencia</th>
+                    <th>Tipo</th>
+                    <th>Material</th>
+                    <th>Precio</th>
+                    <th>Stock Disponible</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr> 
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>  
+                <tr>
+                    <td>Juego Pastillas Ktm Duke 200-250-390 Bybre Original Bajaj</td>
+                    <td> <img class="tamañoImgPedidos" src="../../Imagenes/Imagenes Productos/juego de pastillas.jpg" alt=""></td>
+                    <td>Bajaj</td>
+                    <td>0015051</td>
+                    <td>Delanteras - Traseras</td>
+                    <td>Carbono</td>
+                    <td>110.000$</td>
+                    <td>100</td>
+                    <td><button>Agregar al carrito</button></td>
+                </tr>
+
+                
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>5.000.000</th>
+                    <th>5000</th>
+                </tr>
+            </tfoot>
+
+        </table>
+    </body>
+</html>

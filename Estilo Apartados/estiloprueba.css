@@ -1,0 +1,21 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0;
+    margin: 0;
+}
+
+.jeysson {
+    display: flex;
+    justify-content:center;   
+}
+
+
+.jeysson .edisson {
+    font-size: 100px;
+    background-color: aqua;
+    padding: 20px;
+    margin: 20px;
+    border: solid 2px #000;
+    box-shadow: 0 20px 20px rgba(131, 130, 235, 0.925);
+}
+

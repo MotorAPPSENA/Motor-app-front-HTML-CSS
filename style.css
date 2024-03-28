@@ -1,0 +1,508 @@
+/* Aqui se manejan estilos de nuestra pagina principal*/
+/* Aqui comienzan los estilos de nuestra barra de navegacion*/
+
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+	background-image: url('Imagenes/fondoTaller.jpg');
+	background-repeat:inherit;
+	background-size:contain;
+}
+
+.collapsed {
+	display: none;
+}
+
+nav {
+    background-color: #04112c;
+    color: white;
+    width: 100%;
+	z-index: 500;
+	position: sticky;
+	top: 0;
+}
+
+nav .mobile {
+	display: none;
+}
+
+nav .mobile .header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+}
+
+nav .mobile .header .more button {
+	border: none;
+	background-color: hwb(221 2% 83%);
+	color: white;
+	padding:15px;
+	cursor: pointer;
+}
+
+nav .logo .tamañoLogo {
+	width: 3.5em;
+	border-radius: 50%;
+	padding-top: 5px;
+	padding-left: 10px;	
+}
+
+nav .logo {
+	min-width: 250px;
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 20px 25px;
+}
+
+nav a:hover{
+    color: black;
+    background-color: #4464f5;
+}
+
+.sinHover:hover {
+	color :rgb(235, 235, 235);
+	background-color: hwb(221 2% 83%);
+}
+
+.sinHover{
+	display: flex;
+	align-items: center;
+	justify-content:start;
+	padding: 3px;
+}
+
+nav .desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pad: 0 20px;
+}
+
+nav .desktop .primary,
+nav .desktop .secondary{
+    display: flex;
+}
+
+nav .desktop .secondary.mini{
+    display: none;
+}
+
+.hoverLogo:hover {
+	background-color: red;
+}
+
+@media screen and (max-width : 918px) {
+
+	 nav .logo{
+  	min-width: 100px;
+	}
+
+	nav .secondary.full {
+		display: none;
+	}
+
+	nav .secondary.mini {
+		display: block !important;	
+	}
+	
+	nav .secondary.mini .submenu {
+		background-color: #04112c;
+		position: absolute;
+		display: none;
+		width: 320px;
+		right: 0;
+	}
+	
+	nav .secondary.mini:hover .submenu{
+		display: block;
+	}
+}
+
+@media screen and (max-width :500px) {
+	 nav .desktop {
+		display: none;
+	 }
+
+	 nav .mobile {
+		display: block;
+	 }
+}
+
+/* Aqui terminan estilos de nuestra barra de navegacion responsive*/
+
+/* Aqui comienzan estilos de nuestra nuestras tarjetas con imagenes*/
+
+.cards {
+	display: flex;
+	width: 93%;
+	padding: 50px;
+	justify-content: center;
+	z-index: 100;
+}
+
+.cards .card{
+	background-color: #04112c;
+	color: #ffffff;
+	width: 300px;
+	height: 350px;
+	border-radius: 10px;
+	padding: 30px;
+	box-sizing: border-box;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	transition:all 0.3s ease;
+	box-shadow: -3px 0 10px rgb(68, 100, 245), -4px 0 10px rgb(68, 100, 245), -5px 0 10px rgb(68, 100, 245)
+}
+
+.cards .card a{
+	color: #1a45d3;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.cards .card a:hover{
+	color: rgb(0, 0, 0);
+}
+.cards .card .header{
+	flex: 1;
+}
+
+.cards .card:hover {
+	margin-right: 80px;
+	transform: rotate(3deg) translateY(-15px)
+}
+
+.cards .card .header .date {
+	padding: 10px 0;
+
+}
+
+.cards .card .header .title{
+	font-size: 28px;
+}
+
+.cards .card .footer img {
+	width: 15em;
+	height: 14em;
+	border-radius: 10px;
+}
+
+.cards .card .footer .nombre a {
+
+}
+
+.cards .card[class*="element"] {
+	margin-left: -100px;
+}
+
+.element-1:hover,
+.element-2:hover,
+.element-1:hover{
+	margin-left: -130px;
+}
+
+.contenedorMisionMini {
+	
+}
+
+/* Aqui trataremos de hacer tarjetas responsive resolucion tablet*/
+
+@media screen and (max-width : 1029px) {
+
+	.cards {
+		display: flex;
+		width: 60%;
+		justify-content: center;
+		align-items: center;
+		z-index: 100;
+		padding-left: 8em;
+		padding-top: 40px;
+	}
+
+	.cards .card{
+		background-color: #04112c;
+		color: #ffffff;
+		width: 350px;
+		height: 250px;
+		border-radius: 10px;
+		padding: 30px;
+		box-sizing: border-box;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+	
+		transition:all 0.3s ease;
+		box-shadow: -3px 0 10px rgb(68, 100, 245), -4px 0 10px rgb(68, 100, 245), -5px 0 10px rgb(68, 100, 245)
+	}
+	
+	.cards .card a{
+		color: #1a45d3;
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+	.cards .card a{
+		color: #1a45d3;
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+
+	.cards .card a:hover{
+		color: rgb(0, 0, 0);
+	}
+
+	.cards .card .header{
+		flex: 4px;
+	}
+
+	.cards .card:hover {
+		margin-right: 70px;
+		transform: rotate(3deg) translateY(-15px)
+	}
+
+	.cards .card .header .date {
+		padding: 0px;
+		font-size: 11px;
+	
+	}
+	
+	.cards .card .header .title{
+		font-size: 20px;
+	}
+
+	.cards .card .footer img {
+		width: 9em;
+		height: 11em;
+		border-radius: 7px;
+	}
+
+	.cards .card[class*="element"] {
+		margin-left: -100px;
+	}
+	
+	.element-1:hover,
+	.element-2:hover,
+	.element-1:hover{
+	margin-left: -100px;
+
+}
+}
+
+/* Aqui trataremos de hacer tarjetas responsive resolucion mobil*/
+
+@media screen and (max-width : 520px) {
+
+	.cards {
+		display: flex;
+		width: 50%;
+		justify-content: center;
+		align-items: center;
+		z-index: 100;
+		padding-left: 7em;
+		padding-top: 20px;
+	}
+
+	.cards .card{
+		background-color: #04112c;
+		color: #ffffff;
+		width: 220px;
+		height: 180px;
+		border-radius: 8px;
+		padding: 30px;
+		box-sizing: border-box;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+	
+		transition:all 0.3s ease;
+		box-shadow: -3px 0 10px rgb(68, 100, 245), -4px 0 10px rgb(68, 100, 245), -5px 0 10px rgb(68, 100, 245)
+	}
+	
+	.cards .card a{
+		color: #1a45d3;
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+	.cards .card a:hover{
+		color: rgb(0, 0, 0);
+	}
+
+	.cards .card .header{
+		flex: 6px;
+	}
+
+	.cards .card:hover {
+		margin-right: 70px;
+		transform: rotate(3deg) translateY(-15px)
+	}
+
+	.cards .card .header .date {
+		padding: 0px;
+		font-size: 11px;
+	
+	}
+	
+	.cards .card .header .title{
+		font-size: 14px;
+	}
+
+	.cards .card .footer img {
+		width: 6.8em;
+		height: 7.5em;
+		border-radius: 7px;
+	}
+
+	.cards .card[class*="element"] {
+		margin-left: -100px;
+	}
+	
+	.element-1:hover,
+	.element-2:hover,
+	.element-1:hover{
+	margin-left: -80px;
+
+}
+
+
+}
+/*Estilos Barra de busqueda*/
+.search-bar {
+	border: solid 1px hwb(240 96% 3%);
+	width: 300px;
+	border-radius: 30px;
+	display: flex;
+	height: 40px;
+	margin:auto;
+	flex-direction: row;
+	align-items: center;
+	padding-left:15px;
+	background-color: #ffffff;
+
+	transition: all 0.3s ease-in-out;
+} 
+
+.search-bar:focus-within{
+	border: solid 1px hwb(0 100% 0%);
+	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.829);
+}
+
+.search-bar input[type="text"] {
+	border:none;
+	outline: none;
+	padding: 11px;
+	flex: 1;
+
+	font-size: 15px;
+	font-weight: bold;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+.search-bar .actions{
+	display: flex;
+	gap: 5px;
+}
+
+.search-bar .actions button{
+	border: none;
+	outline: none;
+	background: none;
+	cursor: pointer;
+	margin-right: 5px;
+
+}
+
+.search-bar .actions button:hover{
+	color: #1263dd;
+	font-size: 10px;
+}
+
+
+/*Estilos Barra de Busqueda nobile*/
+
+.search-bar-mobile {
+	border: solid 1px hwb(240 96% 3%);
+	width: 400px;
+	border-radius: 30px;
+	display: flex;
+	height: 40px;
+	margin:auto;
+	flex-direction: row;
+	align-items: center;
+	padding-left:15px;
+	background-color: #ffffff;
+
+	transition: all 0.3s ease-in-out;
+} 
+
+.search-bar-mobile :focus-within{
+	border: solid 1px hwb(0 100% 0%);
+	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.829);
+}
+
+.search-bar-mobile input[type="text"] {
+	border:none;
+	outline: none;
+	padding: 11px;
+	flex: 1;
+
+	font-size: 15px;
+	font-weight: bold;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+.search-bar-mobile .actions{
+	display: flex;
+	gap: 5px;
+}
+
+.search-bar-mobile .actions button{
+	border: none;
+	outline: none;
+	background: none;
+	cursor: pointer;
+	padding-right: 15px;
+
+}
+
+.search-bar-mobile .actions button:hover{
+	color: #1263dd;
+	font-size: 10px;
+}
+
+/*Aqui comienzan los estilos del footer*/
+
+footer img {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+}
+
+.footernav {
+	background-color: #04112c;
+	display: inline-flex;
+	align-items:center;
+	justify-content:space-evenly;
+	width: 97%;
+}
+
+footer nav ul li{
+	color: white;
+	list-style-type: none;
+	font-size: 20px;
+}
+
+footer nav ul li div.redesSociales{
+	display:flex;
+	align-items: center;
+}
