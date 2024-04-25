@@ -157,7 +157,7 @@
 </div>
     <nav>
         <header>
-            <a class="estiloInicio" href="../../index.html"><div class="bar">Inicio</div></a>
+            <a class="estiloInicio" href="../../index.php"><div class="bar">Inicio</div></a>
             <div class="user">
                 <img src="../../Imagenes/fotoPerfil.jpg"  alt="perfil">
                 <div class="name">Nombre Usuario</div>

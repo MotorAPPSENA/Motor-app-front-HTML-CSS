@@ -9,11 +9,11 @@
 		<script src="https://code.iconify.design/2/2.2.0/iconify.min.js"></script>
 </head>
 <body>
-	<!-- Aqui Empieza nuestra barra de navagacion responsive-->
+		<!-- Aqui Empieza nuestra barra de navagacion responsive-->
     <nav>
         <div class="mobile">
             <div class="header">
-                <div class="logo"><a class="sinHover"href="./Apartados/Paginas/Nosotros.html"> <img class="tamañoLogo" src="./Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"> </a></div>
+                <div class="logo"><a class="sinHover"href="./Apartados/Paginas/Nosotros.php"> <img class="tamañoLogo" src="./Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"> </a></div>
                 <div class="more">
 					<button id="bMore">
 						<span class="material-symbols-outlined">menu</span>
@@ -33,17 +33,17 @@
 						</div>
 					</div>
 					<a href="index.html">Inicio</a>
-					<a href="Apartados/Paginas/MisPedidos.html">Mi perfil</a>
-					<a href="Apartados/Paginas/Login.html">Iniciar Sesion</a>
-					<a href="Apartados/Paginas/Registro.html">Registrarse</a>
+					<a href="Apartados/Paginas/MisPedidos.php">Mi perfil</a>
+					<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
+					<a href="Apartados/Paginas/Registro.php">Registrarse</a>
 				</div>	
 		</div>
 
         	<div class="desktop">
-            	<div class="logo"><a class="sinHover" href="Apartados/Paginas/Nosotros.html"><img class="tamañoLogo" src="./Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a></div>
+            	<div class="logo"><a class="sinHover" href="Apartados/Paginas/Nosotros.php"><img class="tamañoLogo" src="./Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a></div>
 				<div class="primary">
-					<a href="index.html">Inicio</a>
-					<a href="Apartados/Paginas/MisPedidos.html">Mi perfil</a>
+					<a href="index.php">Inicio</a>
+					<a href="Apartados/Paginas/MisPedidos.php">Mi perfil</a>
 				</div>
 				<div class="secondary full">
 					<div class="search-bar">
@@ -57,8 +57,8 @@
 							</button>
 						</div>
 					</div>
-					<a href="Apartados/Paginas/Login.html">Iniciar Sesion</a>
-					<a href="Apartados/Paginas/Registro.html">Registrarse</a>
+					<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
+					<a href="Apartados/Paginas/Registro.php">Registrarse</a>
 				</div>
 				<div class="secondary mini">
 					<a href="#" class="more">Menu</a>
@@ -74,8 +74,8 @@
 								</button>
 							</div>
 						</div>
-						<a href="Apartados/Paginas/Login.html">Iniciar Sesion</a>
-						<a href="Apartados/Paginas/Registro.html">Registrarse</a>
+						<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
+						<a href="Apartados/Paginas/Registro.php">Registrarse</a>
 					</div>
 				</div>
 			</div>
