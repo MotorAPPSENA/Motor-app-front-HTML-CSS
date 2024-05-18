@@ -1,30 +1,52 @@
 <?php
+
 session_start();
-if (isset($_SESSION["n_documento"])) {
-    header("");
 
-}
+ $message = ""; // Inicializamos la variable de mensaje
 
-require_once "../../database.php";
+if (isset($_POST['btningresar'])) {
+    $usuario = $_POST['n_identificacion'];
 
-if (!empty($_POST["n_documento"]) && !empty($_POST["passwrd"])) {
-    $sql = "SELECT n_identificacion, passwrd FROM usuarios WHERE n_identificacion = :n_documento";
-    $record = $conn->prepare($sql);
-    $record->bindParam(":n_documento", $_POST["n_documento"]);
-    $record->execute();
-    $result = $record->fetch(PDO::FETCH_ASSOC); // Corrección aquí: asignar resultados a $result
+    require_once "../../database.php"; // Asegúrate de que este archivo contenga la conexión a la base de datos
+    $passwrd = $_POST["passwrd"];
 
-    $message = "";
+    $consulta = "SELECT passwrd FROM usuarios WHERE n_identificacion = :usuario";
+    $statement = $conn->prepare($consulta);
 
-    if ($result && password_verify($_POST["passwrd"], $result["passwrd"])) {
-        $_SESSION["n_documento"] = $result["n_identificacion"];
+    // Corregir los nombres de los parámetros
+    $statement->bindParam(":usuario", $usuario, PDO::PARAM_STR);
 
-        $message = "Inicio de sesión exitoso";
-    } else {
-        $message = "Credenciales incorrectas";
+    try {
+        $statement->execute();
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $valorContrasena = $row["passwrd"];
+            if (password_verify($passwrd, $valorContrasena)) {
+                $_SESSION['n_identificacion'] = $usuario;
+                header("Location: ../../Perfil.php");
+                exit();
+            } else {
+                $message = "Error en la autenticación"; // Mensaje de error
+            }
+        } else {
+            $message = "No se encontraron registros."; // No se encontró el usuario
+        }
+    } catch (PDOException $e) {
+        $message = "Error en la consulta: " . $e->getMessage(); // Mensaje de error si hay una excepción
+    }
+
+} else {
+    // Manejar el caso donde no se envían los datos esperados por POST
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $message = "Datos de inicio de sesión no recibidos.";
     }
 }
+
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -40,24 +62,30 @@ if (!empty($_POST["n_documento"]) && !empty($_POST["passwrd"])) {
 <body>
     <div class="form-container">
         <div class="login-container">
-            <a href="../Paginas/Nosotros.php"><img class="estiloLogoInicioSesion" src="../../Imagenes/LogoMotorApp.jpg"
-                    alt="Logo MotorApp"></a>
+            <div class="contenedorLogo">
+                <a href="../Paginas/Nosotros.php"><img class="estiloLogoInicioSesion"
+                        src="../../Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a>
+            </div>
             <h2>Bienvenido</h2>
-
-            <?php if(!empty($message)): ?>
-                <p><?= $message ?></p>
-            <?php endif; ?>
-
             <p>Selecciona el metodo de autenticación</p>
-            <form method="post" action="../../index.php">
-                <p>
-                    <label for="username">Numero de Documento</label>
-                    <input class="input" type="text" name="n_documento" id="username" />
-                </p>
-                <p>
-                    <label for="username">Contraseña</label>
-                    <input class="input" type="password" name="passwrd" id="password" />
-                </p>
+            <div form-container-two>
+                <form method="post">
+                    <p>
+                        <label for="username">Numero de Documento</label>
+                        <input class="input" type="text" name="n_identificacion" id="username" />
+                    </p>
+                    <p>
+                        <label for="username">Contraseña</label>
+                        <input class="input" type="password" name="passwrd" id="password" />
+                    </p>
+                    <!-- Aquí colocamos el mensaje de excepción -->
+                    <?php if (!empty($message)): ?>
+                        <h3 class="alerta" ><?= $message ?></h3>
+                    <?php endif; ?>
+                    <button type="submit" name="btningresar" id="btningresar" class="btn btn-login"
+                        value="Iniciar Sesión">
+                        INICIAR SESIÓN</button>
+                </form>
                 <div class="options">
                     <div>
                         Recordar usuario
@@ -67,21 +95,19 @@ if (!empty($_POST["n_documento"]) && !empty($_POST["passwrd"])) {
                         <a href="#">Olvide mi contraseña</a>
                     </div>
                 </div>
-                <p>
-                    <input type="submit" name="btningresar" class="btn btn-login" value="Iniciar Sesión">
-                </p>
-                <div class="proveedores">
-                    <span> Elegir otro metodo de autenticación</span>
+                <div class="contPanelInferior">
+                    <p>
+                </div>
+                <div class="contPanelInferior">
+                    <a href="Registro.php"><button class="btn btn-login">Registrarse</button></a>
+                    </p>
                     <a href="https://www.google.com" target="_blank" rel="noopener noreferrer"><button
                             class="btn btn-Google">Google</button></a>
                     <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><button
                             class="btn btn-Facebook">Facebook</button></a>
                 </div>
-            </form>
+            </div>
         </div>
-        <div class="welcome-screen-container">
-            <video autoplay muted loop id="videoFondo" object-fit id="video">
-                <source src="../../Videos/VideoInicioSesion.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
+</body>
+
+</html>

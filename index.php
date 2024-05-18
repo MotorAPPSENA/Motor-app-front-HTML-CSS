@@ -1,296 +1,187 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotorApp</title>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
-		<link rel="stylesheet" href="style.css">
-		<script src="https://code.iconify.design/2/2.2.0/iconify.min.js"></script>
-</head>
-<body>
-		<!-- Aqui Empieza nuestra barra de navagacion responsive-->
-    <nav>
-        <div class="mobile">
-            <div class="header">
-                <div class="logo"><a class="sinHover"href="./Apartados/Paginas/Nosotros.php"> <img class="tamañoLogo" src="./Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"> </a></div>
-                <div class="more">
-					<button id="bMore">
-						<span class="material-symbols-outlined">menu</span>
-					</button>
-				</div>
-            </div>
-				<div  id="links" class="links">
-					<div class="search-bar-mobile">
-						<input type="text">
-						<div class="actions">
-							<button>
-								<span class="material-symbols-outlined">mic</span>
-							</button>
-							<button>
-								<span class="material-symbols-outlined">search</span>
-							</button>
-						</div>
-					</div>
-					<a href="index.html">Inicio</a>
-					<a href="Apartados/Paginas/MisPedidos.php">Mi perfil</a>
-					<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
-					<a href="Apartados/Paginas/Registro.php">Registrarse</a>
-				</div>	
-		</div>
+<?php require('Apartados/Paginas/BarraNavegacion.php')?>
+	<!-- Aqui finaliza nuestra barra de navagacion responsive-->
 
-        	<div class="desktop">
-            	<div class="logo"><a class="sinHover" href="Apartados/Paginas/Nosotros.php"><img class="tamañoLogo" src="./Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a></div>
-				<div class="primary">
-					<a href="index.php">Inicio</a>
-					<a href="Apartados/Paginas/MisPedidos.php">Mi perfil</a>
-				</div>
-				<div class="secondary full">
-					<div class="search-bar">
-						<input type="text">
-						<div class="actions">
-							<button>
-								<span class="material-symbols-outlined">mic</span>
-							</button>
-							<button>
-								<span class="material-symbols-outlined">search</span>
-							</button>
-						</div>
-					</div>
-					<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
-					<a href="Apartados/Paginas/Registro.php">Registrarse</a>
-				</div>
-				<div class="secondary mini">
-					<a href="#" class="more">Menu</a>
-					<div class="submenu">
-						<div class="search-bar">
-							<input type="text">
-							<div class="actions">
-								<button>
-									<span class="material-symbols-outlined">mic</span>
-								</button>
-								<button>
-									<span class="material-symbols-outlined">search</span>
-								</button>
-							</div>
-						</div>
-						<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
-						<a href="Apartados/Paginas/Registro.php">Registrarse</a>
-					</div>
+	<!-- Aqui diseñamos nuestra primera fila de tarjetas con imagenes de productos de la pagina principal-->
+
+	<div class="cards">
+		<!--Tarjeta #1-->
+		<div class="card">
+			<div class="header">
+				<div class="title">Lubricantes</div>
+			</div>
+
+			<div class="footer">
+				<div class="nombre">
+					<a href="Aceites.php">
+						<img src="./Imagenes/aceites2.png" alt="" />
+					</a>
 				</div>
 			</div>
-    		</nav>
-		<script>
-			const bMore = document.querySelector("#bMore");
-			const links = document.querySelector("#links")
+		</div>
+		<!--Tarjeta #2-->
+		<div class="card element-1">
+			<div class="header">
+				<div class="title">Frenos</div>
+			</div>
 
-			bMore.addEventListener("click", (e) => {
-				links.classList.toggle("collapsed");	
-			});
-		</script>
-		<!-- Aqui finaliza nuestra barra de navagacion responsive-->
+			<div class="footer">
+				<div class="nombre">
+					<a href="Frenos.php">
+						<img src="./Imagenes/frenos.jpg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--Tarjeta #3-->
+		<div class="card element-2">
+			<div class="header">
+				<div class="title">Luces</div>
+			</div>
 
+			<div class="footer">
+				<div class="nombre">
+					<a href="Luces.php">
+						<img src="./Imagenes/Luces.jpg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--Tarjeta #4-->
+		<div class="card element-3">
+			<div class="header">
+				<div class="title">Lujos</div>
+			</div>
 
-		<!-- Aqui diseñamos nuestra primera fila de tarjetas con imagenes de productos de la pagina principal-->
+			<div class="footer">
+				<div class="nombre">
+					<a href="Lujos.php">
+						<img src="./Imagenes/lujos2.jpeg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Aqui finaliza nuestra primera fila de tarjetas con imagenes de productos de la pagina principal-->
+	<!-- Aqui diseñamos nuestra segunda fila de tarjetas con imagenes de productos de la pagina principal-->
 
-			<div class="cards">
-				<!--Tarjeta #1-->
-				<div class="card">
-					<div class="header">
-						<div class="title">Lubricantes</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Aceites.html">
-								<img src="./Imagenes/aceites2.png" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--Tarjeta #2-->
-				<div class="card element-1">
-					<div class="header">
-						<div class="title">Frenos</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Frenos.html">
-								<img src="./Imagenes/frenos.jpg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--Tarjeta #3-->
-				<div class="card element-2">
-					<div class="header">
-						<div class="title">Luces</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Luces.html">
-								<img src="./Imagenes/Luces.jpg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--Tarjeta #4-->
-				<div class="card element-3">
-					<div class="header">
-						<div class="title">Lujos</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Lujos.html">
-								<img src="./Imagenes/lujos2.jpeg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>		
-			<!-- Aqui finaliza nuestra primera fila de tarjetas con imagenes de productos de la pagina principal-->
-			<!-- Aqui diseñamos nuestra segunda fila de tarjetas con imagenes de productos de la pagina principal-->
+	<div class="cards">
+		<!--Tarjeta #1-->
+		<div class="card">
+			<div class="header">
+				<div class="title">Calcomanias</div>
+			</div>
 
-			<div class="cards">
-				<!--Tarjeta #1-->
-				<div class="card">
-					<div class="header">
-						<div class="title">Calcomanias</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Calcomanias.html">
-								<img src="./Imagenes/calcomanias.jpg" alt=""/>
-							</a>
-						</div>
-					</div>
+			<div class="footer">
+				<div class="nombre">
+					<a href="Calcomanias.php">
+						<img src="./Imagenes/calcomanias.jpg" alt="" />
+					</a>
 				</div>
-				<!--Tarjeta #2-->
-				<div class="card element-1">
-					<div class="header">
-						<div class="title">Cascos</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Cascos.html">
-								<img src="./Imagenes/cascos2.jpeg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--Tarjeta #3-->
-				<div class="card element-2">
-					<div class="header">
-						<div class="title">Llantas</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Llantas.html">
-								<img src="./Imagenes/llantas.jpeg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--Tarjeta #4-->
-				<div class="card element-3">
-					<div class="header">
-						<div class="title">Motor</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Motor.html">
-								<img src="./Imagenes/ImgMotor.jpg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>	
-			<!-- Aqui finaliza nuestra segunda fila de tarjetas con imagenes de productos de la pagina principal-->	
-			<!-- Aqui diseñamos nuestra tercera fila de tarjetas con imagenes de productos de la pagina principal-->
-			<div class="cards">
-				<!--Tarjeta #1-->
-				<div class="card">
-					<div class="header">
-						<div class="title">Accesorios</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Accesorios.html">
-								<img src="./Imagenes/Accesorios.jpg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--Tarjeta #2-->
-				<div class="card element-1">
-					<div class="header">
-						<div class="title">Pintura</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="./Apartados/Categorias/Pintura.html">
-								<img src="./Imagenes/pintura2.jpg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--Tarjeta #3-->
-				<div class="card element-2">
-					<div class="header">
-						<div class="title">Libre</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="#">
-								<img src="./Imagenes/imagenMotoClasica2.jpg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-				<!--Tarjeta #4-->
-				<div class="card element-3">
-					<div class="header">
-						<div class="title">Libre</div>
-					</div>
-					
-					<div class="footer">
-						<div class="nombre">
-							<a href="#">
-								<img src="./Imagenes/imagenMotoFuturista.jpg" alt=""/>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>	
-			<!-- Aqui finaliza nuestra tercera fila de tarjetas con imagenes de productos de la pagina principal-->
-			<!-- Aqui comienza nuestro pie de pagina-->	
-			<footer>
-				<nav>
-					<ul class="footernav">
-						<a href="#"><li>Terminos de Uso</li></a>
-						<a href="#"><li>Politica de privacidad</li></a>
-									<li>
-										<div class="redesSociales" >
-										<a href=""> <img src="Imagenes/Logofacebook.jpeg" alt=""></a>
-										<a href=""> <img src="Imagenes/whatsapplogo.png" alt=""></a>
-										<a href=""> <img src="Imagenes/logotiktok.png" alt=""></a>
-										<a href=""> <img src="Imagenes/youtubelogo.png" alt=""></a>
-										</div>
-									</li>
-					</ul>
-				</nav>
-			</footer>
+			</div>
+		</div>
+		<!--Tarjeta #2-->
+		<div class="card element-1">
+			<div class="header">
+				<div class="title">Cascos</div>
+			</div>
 
+			<div class="footer">
+				<div class="nombre">
+					<a href="Cascos.php">
+						<img src="./Imagenes/cascos2.jpeg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--Tarjeta #3-->
+		<div class="card element-2">
+			<div class="header">
+				<div class="title">Llantas</div>
+			</div>
 
-	</body>
-</html>
+			<div class="footer">
+				<div class="nombre">
+					<a href="Llantas.php">
+						<img src="./Imagenes/llantas.jpeg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--Tarjeta #4-->
+		<div class="card element-3">
+			<div class="header">
+				<div class="title">Motor</div>
+			</div>
+
+			<div class="footer">
+				<div class="nombre">
+					<a href="Motor.php">
+						<img src="./Imagenes/ImgMotor.jpg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Aqui finaliza nuestra segunda fila de tarjetas con imagenes de productos de la pagina principal-->
+	<!-- Aqui diseñamos nuestra tercera fila de tarjetas con imagenes de productos de la pagina principal-->
+	<div class="cards">
+		<!--Tarjeta #1-->
+		<div class="card">
+			<div class="header">
+				<div class="title">Accesorios</div>
+			</div>
+
+			<div class="footer">
+				<div class="nombre">
+					<a href="Accesorios.php">
+						<img src="./Imagenes/Accesorios.jpg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--Tarjeta #2-->
+		<div class="card element-1">
+			<div class="header">
+				<div class="title">Pintura</div>
+			</div>
+
+			<div class="footer">
+				<div class="nombre">
+					<a href="Pintura.php">
+						<img src="./Imagenes/pintura2.jpg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--Tarjeta #3-->
+		<div class="card element-2">
+			<div class="header">
+				<div class="title">Libre</div>
+			</div>
+
+			<div class="footer">
+				<div class="nombre">
+					<a href="#">
+						<img src="./Imagenes/imagenMotoClasica2.jpg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--Tarjeta #4-->
+		<div class="card element-3">
+			<div class="header">
+				<div class="title">Libre</div>
+			</div>
+
+			<div class="footer">
+				<div class="nombre">
+					<a href="#">
+						<img src="./Imagenes/imagenMotoFuturista.jpg" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Aqui finaliza nuestra tercera fila de tarjetas con imagenes de productos de la pagina principal-->
+	<!-- Aqui comienza nuestro pie de pagina-->
+	<?php require('Apartados/Paginas/piePagina.php')?>

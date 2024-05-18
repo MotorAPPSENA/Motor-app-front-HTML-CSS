@@ -81,6 +81,7 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"])) {
                         </div>
                     </div>
             </div>
+            <div class="contPanelInferior">
             <p>
                 <button class="btn btn-login" value="Registrarse" id="registro" name="registro"
                     type="submit">Registrarse</button>
@@ -90,13 +91,15 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"])) {
                     <a href="Login.php"><button class="btnExcepcion"><?= $message ?></button></a>
                 </div>
             <?php endif; ?>
-            <div>
+            </div>
+            <div class="contPanelInferior">
             </p>
             <span> Elegir otro metodo de autenticación</span>
             <a href="https://www.google.com" target="_blank" rel="noopener noreferrer"><button
                     class="btn btn-Google">Google</button></a>
             <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><button
                     class="btn btn-Facebook">Facebook</button></a>
+            </div>
         </div>
 </body>
 

@@ -3,12 +3,12 @@
 
 
 body {
-    font-family: 'Times New Roman', Times, serif;
-    margin: 0;
-    padding: 0;
+	font-family: 'Times New Roman', Times, serif;
+	margin: 0;
+	padding: 0;
 	background-image: url('Imagenes/fondoTaller.jpg');
-	background-repeat:inherit;
-	background-size:contain;
+	background-repeat: inherit;
+	background-size: contain;
 }
 
 .collapsed {
@@ -16,9 +16,10 @@ body {
 }
 
 nav {
-    background-color: #04112c;
-    color: white;
-    width: 100%;
+	background: #0101217b;
+	backdrop-filter: blur(0.4rem);
+	color: rgb(225, 225, 225);
+	width: 100%;
 	z-index: 500;
 	position: sticky;
 	top: 0;
@@ -32,76 +33,78 @@ nav .mobile .header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	
+
 }
 
 nav .mobile .header .more button {
-	border: none;
-	background-color: hwb(221 2% 83%);
-	color: white;
-	padding:15px;
+	border-style:none;
+	background: none;
+	color:  rgb(173, 173, 173);
+	padding: 15px;
 	cursor: pointer;
+	border-radius: 10%;
 }
 
 nav .logo .tamañoLogo {
 	width: 3.5em;
 	border-radius: 50%;
 	padding-top: 5px;
-	padding-left: 10px;	
+	padding-left: 10px;
 }
 
 nav .logo {
-	min-width: 250px;
+	min-width: 50px;
 }
 
-nav a{
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 20px 25px;
+nav a {
+	color: rgb(208, 208, 208);
+	text-decoration: none;
+	display: block;
+	padding: 20px 25px;
 }
 
-nav a:hover{
-    color: black;
-    background-color: #4464f5;
+nav a:hover {
+	color: rgb(255, 255, 255);
+
 }
 
 .sinHover:hover {
-	color :rgb(235, 235, 235);
-	background-color: hwb(221 2% 83%);
+	background: #0101217b;
+	backdrop-filter: blur(0.4rem);
+
 }
 
-.sinHover{
-	display: flex;
-	align-items: center;
-	justify-content:start;
-	padding: 3px;
+.aLogo {
+	padding: 2px;
+	margin: 0;
 }
 
 nav .desktop {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    pad: 0 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	pad: 0 20px;
 }
 
 nav .desktop .primary,
-nav .desktop .secondary{
-    display: flex;
+nav .desktop .secondary {
+	display: flex;
 }
 
-nav .desktop .secondary.mini{
-    display: none;
+nav .desktop .secondary.mini {
+	display: none;
 }
 
 .hoverLogo:hover {
-	background-color: red;
+	background: #01010b7b;
+	backdrop-filter: blur(0.4rem);
+
 }
 
 @media screen and (max-width : 918px) {
 
-	 nav .logo{
-  	min-width: 100px;
+	nav .logo {
+		min-width: 100px;
 	}
 
 	nav .secondary.full {
@@ -109,30 +112,37 @@ nav .desktop .secondary.mini{
 	}
 
 	nav .secondary.mini {
-		display: block !important;	
+		display: block !important;
 	}
-	
+
 	nav .secondary.mini .submenu {
-		background-color: #04112c;
+		background: #0101217b;
+		backdrop-filter: blur(0.4rem);
 		position: absolute;
 		display: none;
-		width: 320px;
+		width: 150px;
 		right: 0;
+		margin-top: 4px;
 	}
-	
-	nav .secondary.mini:hover .submenu{
+
+	nav .secondary.mini:hover .submenu {
 		display: block;
+	}
+
+	.aLogo {
+		padding: 2px;
+		margin: 0;
 	}
 }
 
 @media screen and (max-width :500px) {
-	 nav .desktop {
+	nav .desktop {
 		display: none;
-	 }
+	}
 
-	 nav .mobile {
+	nav .mobile {
 		display: block;
-	 }
+	}
 }
 
 /* Aqui terminan estilos de nuestra barra de navegacion responsive*/
@@ -147,9 +157,10 @@ nav .desktop .secondary.mini{
 	z-index: 100;
 }
 
-.cards .card{
-	background-color: #04112c;
-	color: #ffffff;
+.cards .card {
+	background: #0101217b;
+	backdrop-filter: blur(0.4rem);
+	color: #c8c8c8;
 	width: 300px;
 	height: 350px;
 	border-radius: 10px;
@@ -159,20 +170,21 @@ nav .desktop .secondary.mini{
 	display: flex;
 	flex-direction: column;
 
-	transition:all 0.3s ease;
-	box-shadow: -3px 0 10px rgb(68, 100, 245), -4px 0 10px rgb(68, 100, 245), -5px 0 10px rgb(68, 100, 245)
+	transition: all 0.3s ease;
+	box-shadow: -3px 0 10px rgb(1, 1, 1), -4px 0 10px rgb(4, 13, 53), -5px 0 10px rgb(6, 16, 60)
 }
 
-.cards .card a{
+.cards .card a {
 	color: #1a45d3;
 	text-decoration: none;
 	font-weight: bold;
 }
 
-.cards .card a:hover{
+.cards .card a:hover {
 	color: rgb(0, 0, 0);
 }
-.cards .card .header{
+
+.cards .card .header {
 	flex: 1;
 }
 
@@ -186,7 +198,7 @@ nav .desktop .secondary.mini{
 
 }
 
-.cards .card .header .title{
+.cards .card .header .title {
 	font-size: 28px;
 }
 
@@ -196,9 +208,7 @@ nav .desktop .secondary.mini{
 	border-radius: 10px;
 }
 
-.cards .card .footer .nombre a {
-
-}
+.cards .card .footer .nombre a {}
 
 .cards .card[class*="element"] {
 	margin-left: -100px;
@@ -206,13 +216,11 @@ nav .desktop .secondary.mini{
 
 .element-1:hover,
 .element-2:hover,
-.element-1:hover{
+.element-1:hover {
 	margin-left: -130px;
 }
 
-.contenedorMisionMini {
-	
-}
+.contenedorMisionMini {}
 
 /* Aqui trataremos de hacer tarjetas responsive resolucion tablet*/
 
@@ -225,12 +233,13 @@ nav .desktop .secondary.mini{
 		align-items: center;
 		z-index: 100;
 		padding-left: 8em;
-		padding-top: 40px;
+		padding-top: 120px;
 	}
 
-	.cards .card{
-		background-color: #04112c;
-		color: #ffffff;
+	.cards .card {
+		background: #0101217b;
+		backdrop-filter: blur(0.4rem);
+		color: #c8c8c8;
 		width: 350px;
 		height: 250px;
 		border-radius: 10px;
@@ -239,29 +248,29 @@ nav .desktop .secondary.mini{
 		position: relative;
 		display: flex;
 		flex-direction: column;
-	
-		transition:all 0.3s ease;
-		box-shadow: -3px 0 10px rgb(68, 100, 245), -4px 0 10px rgb(68, 100, 245), -5px 0 10px rgb(68, 100, 245)
+
+		transition: all 0.3s ease;
+		box-shadow: -3px 0 10px rgb(1, 1, 1), -4px 0 10px rgb(4, 13, 53), -5px 0 10px rgb(6, 16, 60)
 	}
-	
-	.cards .card a{
+
+	.cards .card a {
 		color: #1a45d3;
 		text-decoration: none;
 		font-weight: bold;
 	}
 
-	.cards .card a{
+	.cards .card a {
 		color: #1a45d3;
 		text-decoration: none;
 		font-weight: bold;
 	}
 
 
-	.cards .card a:hover{
+	.cards .card a:hover {
 		color: rgb(0, 0, 0);
 	}
 
-	.cards .card .header{
+	.cards .card .header {
 		flex: 4px;
 	}
 
@@ -273,10 +282,10 @@ nav .desktop .secondary.mini{
 	.cards .card .header .date {
 		padding: 0px;
 		font-size: 11px;
-	
+
 	}
-	
-	.cards .card .header .title{
+
+	.cards .card .header .title {
 		font-size: 20px;
 	}
 
@@ -289,13 +298,13 @@ nav .desktop .secondary.mini{
 	.cards .card[class*="element"] {
 		margin-left: -100px;
 	}
-	
+
 	.element-1:hover,
 	.element-2:hover,
-	.element-1:hover{
-	margin-left: -100px;
+	.element-1:hover {
+		margin-left: -100px;
 
-}
+	}
 }
 
 /* Aqui trataremos de hacer tarjetas responsive resolucion mobil*/
@@ -312,9 +321,10 @@ nav .desktop .secondary.mini{
 		padding-top: 20px;
 	}
 
-	.cards .card{
-		background-color: #04112c;
-		color: #ffffff;
+	.cards .card {
+		background: #0101217b;
+		backdrop-filter: blur(0.4rem);
+		color: #c8c8c8;
 		width: 220px;
 		height: 180px;
 		border-radius: 8px;
@@ -323,22 +333,22 @@ nav .desktop .secondary.mini{
 		position: relative;
 		display: flex;
 		flex-direction: column;
-	
-		transition:all 0.3s ease;
-		box-shadow: -3px 0 10px rgb(68, 100, 245), -4px 0 10px rgb(68, 100, 245), -5px 0 10px rgb(68, 100, 245)
+
+		transition: all 0.3s ease;
+		box-shadow: -3px 0 10px rgb(1, 1, 1), -4px 0 10px rgb(4, 13, 53), -5px 0 10px rgb(6, 16, 60)
 	}
-	
-	.cards .card a{
+
+	.cards .card a {
 		color: #1a45d3;
 		text-decoration: none;
 		font-weight: bold;
 	}
 
-	.cards .card a:hover{
+	.cards .card a:hover {
 		color: rgb(0, 0, 0);
 	}
 
-	.cards .card .header{
+	.cards .card .header {
 		flex: 6px;
 	}
 
@@ -350,10 +360,10 @@ nav .desktop .secondary.mini{
 	.cards .card .header .date {
 		padding: 0px;
 		font-size: 11px;
-	
+
 	}
-	
-	.cards .card .header .title{
+
+	.cards .card .header .title {
 		font-size: 14px;
 	}
 
@@ -366,16 +376,17 @@ nav .desktop .secondary.mini{
 	.cards .card[class*="element"] {
 		margin-left: -100px;
 	}
-	
+
 	.element-1:hover,
 	.element-2:hover,
-	.element-1:hover{
-	margin-left: -80px;
+	.element-1:hover {
+		margin-left: -80px;
+
+	}
+
 
 }
 
-
-}
 /*Estilos Barra de busqueda*/
 .search-bar {
 	border: solid 1px hwb(240 96% 3%);
@@ -383,22 +394,22 @@ nav .desktop .secondary.mini{
 	border-radius: 30px;
 	display: flex;
 	height: 40px;
-	margin:auto;
+	margin: auto;
 	flex-direction: row;
 	align-items: center;
-	padding-left:15px;
+	padding-left: 15px;
 	background-color: #ffffff;
 
 	transition: all 0.3s ease-in-out;
-} 
+}
 
-.search-bar:focus-within{
+.search-bar:focus-within {
 	border: solid 1px hwb(0 100% 0%);
 	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.829);
 }
 
 .search-bar input[type="text"] {
-	border:none;
+	border: none;
 	outline: none;
 	padding: 11px;
 	flex: 1;
@@ -408,12 +419,12 @@ nav .desktop .secondary.mini{
 	font-family: 'Times New Roman', Times, serif;
 }
 
-.search-bar .actions{
+.search-bar .actions {
 	display: flex;
 	gap: 5px;
 }
 
-.search-bar .actions button{
+.search-bar .actions button {
 	border: none;
 	outline: none;
 	background: none;
@@ -422,7 +433,7 @@ nav .desktop .secondary.mini{
 
 }
 
-.search-bar .actions button:hover{
+.search-bar .actions button:hover {
 	color: #1263dd;
 	font-size: 10px;
 }
@@ -436,22 +447,22 @@ nav .desktop .secondary.mini{
 	border-radius: 30px;
 	display: flex;
 	height: 40px;
-	margin:auto;
+	margin: auto;
 	flex-direction: row;
 	align-items: center;
-	padding-left:15px;
+	padding-left: 15px;
 	background-color: #ffffff;
 
 	transition: all 0.3s ease-in-out;
-} 
+}
 
-.search-bar-mobile :focus-within{
+.search-bar-mobile :focus-within {
 	border: solid 1px hwb(0 100% 0%);
 	box-shadow: 0 2px 5px rgba(255, 255, 255, 0.829);
 }
 
 .search-bar-mobile input[type="text"] {
-	border:none;
+	border: none;
 	outline: none;
 	padding: 11px;
 	flex: 1;
@@ -461,12 +472,12 @@ nav .desktop .secondary.mini{
 	font-family: 'Times New Roman', Times, serif;
 }
 
-.search-bar-mobile .actions{
+.search-bar-mobile .actions {
 	display: flex;
 	gap: 5px;
 }
 
-.search-bar-mobile .actions button{
+.search-bar-mobile .actions button {
 	border: none;
 	outline: none;
 	background: none;
@@ -475,7 +486,7 @@ nav .desktop .secondary.mini{
 
 }
 
-.search-bar-mobile .actions button:hover{
+.search-bar-mobile .actions button:hover {
 	color: #1263dd;
 	font-size: 10px;
 }
@@ -488,21 +499,41 @@ footer img {
 	border-radius: 50%;
 }
 
-.footernav {
-	background-color: #04112c;
+.listfoot {
+	color: #c8c8c8;
 	display: inline-flex;
-	align-items:center;
-	justify-content:space-evenly;
-	width: 97%;
+	align-items: center;
+	margin: 10px auto;
 }
 
-footer nav ul li{
-	color: white;
+.footernav {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+}
+
+footer ul li {
+	color: rgb(255, 255, 255);
 	list-style-type: none;
 	font-size: 20px;
 }
 
-footer nav ul li div.redesSociales{
-	display:flex;
+footer ul li:hover {
+	color: rgb(255, 255, 255);
+	list-style-type: none;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+footer ul li div.redesSociales {
+	display: flex;
 	align-items: center;
+	margin: 10px auto;
+	margin-left: 2em;
+}
+
+
+footer a {
+	text-decoration: none;
 }

@@ -1,38 +1,50 @@
-body{
+body {
     font-family: 'Times New Roman', Times, serif;
     padding: 0;
     margin: 0;
     display: flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
     height: 100vh;
     background-image: url('../Imagenes/imagenMotoClasica.jpg');
-    background-size:contain;
+    background-size: contain;
     background-attachment: fixed;
 
 }
 
-.form-container{
-    background-color: white;
-    width: 70%;
+.form-container {
+    background: #2b2d332e;
+    backdrop-filter: blur(0.4rem);
+    color: rgb(196, 196, 196);
+    min-width: 40%;
     border-radius: 10px;
     overflow: hidden;
-    
-    height: 70%;
+    font-size: 15px;
+    height: 80%;
     display: flex;
     align-items: center;
 }
 
 .form-container .login-container {
-width: 400px;
-margin: 0 auto;
-
+    min-width: 55%;
+    height: 100%;
+    margin: 0 auto;
 }
 
-.form-container .login-container > h2 {
+.contenedorLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+
+
+
+.form-container .login-container>h2 {
     text-align: center;
     font-size: 2em;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 
@@ -40,144 +52,250 @@ margin: 0 auto;
     width: 5em;
     height: 5em;
     border-radius: 50%;
-    padding-left: 42%;
-    margin-top: 0px;
+    display: flex;
+}
+
+input {
+    background: #8784847b;
+    backdrop-filter: blur(0.4rem);
+    color: rgb(204, 202, 202);
+    font-size: 17px;
+
 }
 
 
-.form-container .login-container >p,
-.form-container .login-container >span{
-     text-align: center;
-     color: #979595;
+.form-container .login-container>p,
+.form-container .login-container>span {
+    text-align: center;
+    color: #979595;
 }
 
-.form-container .login-container label{
+.form-container .login-container label {
     display: block;
     font-weight: bold;
     padding: 5px 0;
 }
 
 .form-container .login-container input.input {
-  display: block;  
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  border:solid 1px #ccc;
-  border-radius: 5px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
 }
 
 .form-container .login-container input.input:focus {
-    outline:solid 2px #0099ff ;
+    outline: solid 2px #ffffffc8;
 }
 
 .form-container .login-container .options {
     display: flex;
-    justify-content:  space-between;
-    align-items: center ;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.form-container  a {
-    color: #979595 ;
+.form-container a {
+    color: #979595;
     text-decoration: none;
 }
 
-.form-container  a:hover {
+.form-container a:hover {
     color: #0099ff;
     font-weight: bold;
 }
 
-.form-container .login-container .proveedores{
-    display: flex;
-   flex-direction: column;
-   gap: 10px;
-   text-align: center;
-   margin-top: 30px;
 
+.btn {
+    border: none;
+    padding: 10px 0;
+    width: 100%;
+    font-weight: bolder;
+    display: block;
+    border-radius: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
-.btn{
-    border:none;
-     padding: 15px 0;
-     width: 100%;
-     font-weight: bolder;
-     display: block;
-     border-radius: 5px;
-     text-transform: uppercase;
-     cursor: pointer;
-}
-
-.btn.btn-login{
-    background-color: black;
-    color: white;
+.btn.btn-login {
+    background-color: rgb(21, 20, 20);
+    color: rgb(181, 176, 176);
 }
 
 .btn.btn-login:hover {
-    background-color: #272727;
+    background-color: #222223;
 }
 
 .btn.btn-Facebook {
- background-color: #050577;
- color: white;
+    background-color: #030322;
+    color: white;
 }
 
-.btn.btn-Facebook:hover{
-    background-color:#070763;
+.btn.btn-Facebook:hover {
+    background-color: #050538;
 }
 
 .btn.btn-Google {
- background-color: white;
- color: black;
- border:solid 1px #ccc;
-} 
+    background-color: rgb(204, 202, 202);
+    color: black;
+    border: solid 1px #ccc;
+}
 
 .btn.btn-Google:hover {
-    background-color: rgb(240, 240, 240);
+   background-color: rgb(201, 201, 201);    
 }
 
-
-
- 
-.welcome-screen-container{
-    display: flex;           
-    justify-content: center; 
-    align-items: center;     
-    min-height: 100vh;       
-    margin: 0;               
-    background-color: #000000;
+.contPanelInferior{
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
-
-video {
-    width: 100%;            
-    max-width: 600px;       
-    height: auto;            
-    border: 3px solid #000;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+.alerta{
+    color: rgb(201, 105, 105);
+    font-weight: bold;
 }
 
-@media screen and (max-width: 1500px) {
-    .form-container{
-        width: 95%;
+@media screen and (max-width: 742px) {
+    .form-container {
+        background: #2b2d332e;
+        backdrop-filter: blur(0.4rem);
+        color: rgb(196, 196, 196);
+        min-width: 80%;
+        border-radius: 10px;
+        overflow: hidden;
+        font-size: 12px;
+        height: 75%;
+        display: flex;
+        align-items: center;
     }
     
-    .form-container .login-container{
-        width: 400px;
+    .form-container .login-container {
+        min-width: 60%;
+        height: 100%;
         margin: 0 auto;
     }
-
-    .form-container .welcome-screen-container {
-        width: 40%;
+    
+    .contenedorLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
     }
-} 
-
-@media screen and (max-width: 800px) {
-
-    .form-container .welcome-screen-container {
-        width: 0;
+    
+    
+    
+    
+    .form-container .login-container>h2 {
+        text-align: center;
+        font-size: 1.8em;
+        margin-top: 10px;
     }
-        
-    .form-container .login-container {
-       width: 350px;
+    
+    
+    .estiloLogoInicioSesion {
+        width: 4.5em;
+        height: 4.5em;
+        border-radius: 50%;
+        display: flex;
     }
+    
+    input {
+        background: #8784847b;
+        backdrop-filter: blur(0.4rem);
+        color: rgb(204, 202, 202);
+        font-size: 14px;
+    
+    }
+    
+    
+    .form-container .login-container>p,
+    .form-container .login-container>span {
+        text-align: center;
+        color: #979595;
+    }
+    
+    .form-container .login-container label {
+        display: block;
+        font-weight: bold;
+        padding: 4px 0;
+    }
+    
+    .form-container .login-container input.input {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 9px;
+        border: solid 1px #ccc;
+        border-radius: 5px;
+    }
+    
+    .form-container .login-container input.input:focus {
+        outline: solid 2px #ffffffc8;
+    }
+    
+    .form-container .login-container .options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .form-container a {
+        color: #979595;
+        text-decoration: none;
+    }
+    
+    .form-container a:hover {
+        color: #0099ff;
+        font-weight: bold;
+    }
+    
+    
+    .btn {
+        border: none;
+        padding: 7px 0;
+        width: 100%;
+        font-weight: bolder;
+        display: block;
+        border-radius: 5px;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    
+    .btn.btn-login {
+        background-color: rgb(21, 20, 20);
+        color: rgb(181, 176, 176);
+        font-size: 11px;
+    }
+    
+    .btn.btn-login:hover {
+        background-color: #222223;
+    }
+    
+    .btn.btn-Facebook {
+        background-color: #030322;
+        color: white;
+        font-size: 11px;
+    }
+    
+    .btn.btn-Facebook:hover {
+        background-color: #050538;
+    }
+    
+    .btn.btn-Google {
+        background-color: rgb(204, 202, 202);
+        color: black;
+        border: solid 1px #ccc;
+        font-size: 11px;
+    }
+    
+    .btn.btn-Google:hover {
+       background-color: rgb(201, 201, 201);    
+    }
+    
+    .contPanelInferior{
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    
 
-}
+  }
