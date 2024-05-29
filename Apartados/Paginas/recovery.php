@@ -55,8 +55,6 @@ if (isset($_POST['btnEnviar'])) {
     } else {
         $message = "El correo no existe en la base de datos.";
     }
-
-    echo $message;
 } else {
     echo "No se ha enviado el formulario.";
 }
