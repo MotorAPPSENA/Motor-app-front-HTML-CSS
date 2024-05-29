@@ -40,12 +40,12 @@ if (isset($_POST['btnEnviar'])) {
         $stmt->execute();
 
         // Enviamos el correo electrónico
-        $resetLink = "https://tu-sitio-web.com/reset_password.php?token=" . $token;
+        $resetLink = "https://motorappsena.com/Apartados/Paginas/Login.php/reset_password.php?token=" . $token;
 
         $to = $correo;
         $subject = "Recuperación de contraseña";
-        $body = "Hola $nombreUsuario, \n\nHaz clic en el siguiente enlace para restablecer tu contraseña: \n\n$resetLink \n\nEste enlace es válido por 1 hora.";
-        $headers = "From: no-reply@tu-sitio-web.com";
+        $body = "Hola $nombreUsuario, \n\nHaz clic en el siguiente enlace para restablecer tu Password: \n\n$resetLink \n\nEste enlace es válido por 1 hora.";
+        $headers = "From: Motorappsena.com";
 
         if (mail($to, $subject, $body, $headers)) {
             $message = "Hemos enviado un enlace de recuperación a tu correo.";
