@@ -2,7 +2,7 @@
 	<!-- Aqui finaliza nuestra barra de navagacion responsive-->
 
 	<!-- Aqui diseñamos nuestra primera fila de tarjetas con imagenes de productos de la pagina principal-->
-
+      <H1>VINCULAR HITHUB CON HOSTINGER</H1>
 	<div class="cards">
 		<!--Tarjeta #1-->
 		<div class="card">
