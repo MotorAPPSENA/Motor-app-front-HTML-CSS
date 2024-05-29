@@ -2,7 +2,7 @@
 
 session_start();
 
- $message = ""; // Inicializamos la variable de mensaje
+$message = ""; // Inicializamos la variable de mensaje
 
 if (isset($_POST['btningresar'])) {
     $usuario = $_POST['n_identificacion'];
@@ -10,22 +10,27 @@ if (isset($_POST['btningresar'])) {
     require_once "../../database.php"; // Asegúrate de que este archivo contenga la conexión a la base de datos
     $passwrd = $_POST["passwrd"];
 
-    $consulta = "SELECT passwrd FROM usuarios WHERE n_identificacion = :usuario";
+    $consulta = "SELECT passwrd, rol FROM usuarios WHERE n_identificacion = :usuario";
     $statement = $conn->prepare($consulta);
 
     // Corregir los nombres de los parámetros
     $statement->bindParam(":usuario", $usuario, PDO::PARAM_STR);
-
     try {
         $statement->execute();
         $row = $statement->fetch(PDO::FETCH_ASSOC);
 
         if ($row) {
             $valorContrasena = $row["passwrd"];
+            $rolUsuario = $row["rol"];
+
             if (password_verify($passwrd, $valorContrasena)) {
                 $_SESSION['n_identificacion'] = $usuario;
-                header("Location: ../../Perfil.php");
-                exit();
+                
+                if ($rolUsuario == 1) {
+                    header("Location: ../../Perfil.php");
+                } else {
+                    header("Location: ../../PerfilAdmin.php");
+                }
             } else {
                 $message = "Error en la autenticación"; // Mensaje de error
             }
@@ -63,7 +68,7 @@ if (isset($_POST['btningresar'])) {
     <div class="form-container">
         <div class="login-container">
             <div class="contenedorLogo">
-                <a href="../Paginas/Nosotros.php"><img class="estiloLogoInicioSesion"
+                <a href="../../Nosotros.php"><img class="estiloLogoInicioSesion"
                         src="../../Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a>
             </div>
             <h2>Bienvenido</h2>
@@ -80,7 +85,7 @@ if (isset($_POST['btningresar'])) {
                     </p>
                     <!-- Aquí colocamos el mensaje de excepción -->
                     <?php if (!empty($message)): ?>
-                        <h3 class="alerta" ><?= $message ?></h3>
+                        <h3 class="alerta"><?= $message ?></h3>
                     <?php endif; ?>
                     <button type="submit" name="btningresar" id="btningresar" class="btn btn-login"
                         value="Iniciar Sesión">
@@ -92,7 +97,7 @@ if (isset($_POST['btningresar'])) {
                         <input type="checkbox" name="rememberme" id="rememberme" />
                     </div>
                     <div>
-                        <a href="#">Olvide mi contraseña</a>
+                        <a href="recovery.php">Olvide mi contraseña</a>
                     </div>
                 </div>
                 <div class="contPanelInferior">

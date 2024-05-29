@@ -229,12 +229,6 @@
                 </div>
                 <div class="title">Cerrar sesión</div>
             </a>
-            <a href="PerfilAdmin.php">
-                <div class="icon">
-                    <span class="iconify" data-icon="flat-color-icons:about" data-width="32" data-heigth="32"></span>
-                </div>
-                <div class="title">Administrador</div>
-            </a>
         </div>
     </nav>
 </body>

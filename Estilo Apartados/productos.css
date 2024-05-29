@@ -1,0 +1,28 @@
+.titulo {
+    backdrop-filter: blur(0.1rem);
+    background: #0101217b;
+    color: rgb(215, 215, 215);
+    margin-left: 14em;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.BotonTitulo {
+    backdrop-filter: blur(0.1rem);
+    background: #0000139f;
+    color: white;
+    cursor: pointer;
+    width: 12%;
+    height: 2.5em;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 1.2em;
+
+}
+
+.BotonTitulo:hover{
+    backdrop-filter: blur(0.1rem);
+    background: #2b2b56af;
+    color: white;
+} 

@@ -41,7 +41,7 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"])) {
     <div class="form-container">
         <div class="login-container">
             <div class="contenedorLogo">
-                <a href="../Paginas/Nosotros.php"><img class="estiloLogoInicioSesion"
+                <a href="../../Nosotros.php"><img class="estiloLogoInicioSesion"
                         src="../../Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a>
             </div>
             <h2>Bienvenido</h2>
