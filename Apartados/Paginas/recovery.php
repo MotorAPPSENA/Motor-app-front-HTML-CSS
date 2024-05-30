@@ -33,19 +33,20 @@ if (isset($_POST['btnEnviar'])) {
         $expiry_time = date('Y-m-d H:i:s', strtotime('+1 hour')); // Token válido por 1 hora
 
         // Guardamos el token en la base de datos
-        $updateToken = "UPDATE usuarios SET token = :token WHERE id_usuario = :user_id";
+        $updateToken = "UPDATE usuarios SET token = :token, token_expiry = :expiry_time WHERE id_usuario = :user_id";
         $stmt = $conn->prepare($updateToken);
         $stmt->bindParam(":user_id", $usuarioId, PDO::PARAM_INT);
         $stmt->bindParam(":token", $token, PDO::PARAM_STR);
+        $stmt->bindParam(":expiry_time", $expiry_time, PDO::PARAM_STR);
         $stmt->execute();
 
         // Enviamos el correo electrónico
-        $resetLink = "https://motorappsena.com/resetPassword.php" . $token;
+        $resetLink = "https://motorappsena.com/resetPassword.php?token=" . $token;
 
         $to = $correo;
         $subject = "Recuperación de contraseña";
-        $body = "Hola $nombreUsuario, \n\nHaz clic en el siguiente enlace para restablecer tu Password: \n\n$resetLink \n\nEste enlace es válido por 1 hora.";
-        $headers = "From: Motorappsena.com";
+        $body = "Hola $nombreUsuario, \n\nHaz clic en el siguiente enlace para restablecer tu contraseña: \n\n$resetLink \n\nEste enlace es válido por 1 hora.";
+        $headers = "From: no-reply@motorappsena.com";
 
         if (mail($to, $subject, $body, $headers)) {
             $message = "Hemos enviado un enlace de recuperación a tu correo.";
@@ -62,38 +63,32 @@ if (isset($_POST['btnEnviar'])) {
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../Estilo Apartados/styleRecovery.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <title>LoginMotorApp</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Recuperación de Contraseña - MotorApp</title>
 </head>
-
 <body>
     <div class="form-container">
         <div class="login-container">
             <div class="contenedorLogo">
-                <a href="../../Nosotros.php"><img class="estiloLogoInicioSesion"
-                        src="../../Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a>
+                <a href="../../Nosotros.php"><img class="estiloLogoInicioSesion" src="../../Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a>
             </div>
-            <div form-container-two>
+            <div class="form-container-two">
                 <form method="post" class="recoveryForm">
                     <p>
-                        <input class="input" type="email" name="emailButton" id="emailButton" placeholder="Introduce tu correo electronico" />
+                        <input class="input" type="email" name="emailButton" id="emailButton" placeholder="Introduce tu correo electrónico" required />
                     </p>
-                    <!-- creamos input para que para ingresar correo electronico de recuperacion -->
+                    <!-- creamos input para ingresar correo electrónico de recuperación -->
                     <?php if (!empty($message)): ?>
                         <h3 class="alerta"><?= $message ?></h3>
                     <?php endif; ?>
-                    <button type="submit" name="btnEnviar" id="btnEnviar" class="btn btn-login"
-                        value="Iniciar Sesión">
-                        ENVIAR</button>
+                    <button type="submit" name="btnEnviar" id="btnEnviar" class="btn btn-login">ENVIAR</button>
                 </form>
             </div>
         </div>
+    </div>
 </body>
-
 </html>
