@@ -26,7 +26,7 @@ if (isset($_POST['btningresar'])) {
             if (password_verify($passwrd, $valorContrasena)) {
                 $_SESSION['n_identificacion'] = $usuario;
                 
-                if ($rolUsuario == 1) {
+                if ($rolUsuario == 0 || $rolUsuario == 1) {
                     header("Location: ../../Perfil.php");
                 } else {
                     header("Location: ../../PerfilAdmin.php");
