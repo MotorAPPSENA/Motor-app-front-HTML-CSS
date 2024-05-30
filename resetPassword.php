@@ -29,7 +29,7 @@ if (isset($_GET['token'])) {
             if (strlen($nuevaContrasena) >= 8) {
                 // Actualizamos la contraseña en la base de datos
                 $hashContrasena = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
-                $updatePassword = "UPDATE usuarios SET password = :password, token = NULL WHERE n_identificacion = :user_id";
+                $updatePassword = "UPDATE usuarios SET passwrd = :password, token = NULL WHERE n_identificacion = :user_id";
                 $stmt = $conn->prepare($updatePassword);
                 $stmt->bindParam(":password", $hashContrasena, PDO::PARAM_STR);
                 $stmt->bindParam(":user_id", $usuarioId, PDO::PARAM_INT);

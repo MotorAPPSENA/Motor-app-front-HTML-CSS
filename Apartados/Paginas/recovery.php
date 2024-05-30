@@ -13,7 +13,7 @@ if (isset($_POST['btnEnviar'])) {
     require_once "../../database.php"; // Asegúrate de que este archivo contenga la conexión a la base de datos
 
     // Preparamos la consulta para prevenir inyecciones SQL
-    $consultaCorreo = "SELECT id_usuario, nombre FROM usuarios WHERE email = :email";
+    $consultaCorreo = "SELECT n_identificacion, nombre FROM usuarios WHERE email = :email";
     $statement = $conn->prepare($consultaCorreo);
 
     // Asociamos el parámetro de la consulta
@@ -26,16 +26,16 @@ if (isset($_POST['btnEnviar'])) {
     if ($statement->rowCount() > 0) {
         $resultado = $statement->fetch(PDO::FETCH_ASSOC);
         $nombreUsuario = $resultado['nombre'];
-        $usuarioId = $resultado['id_usuario'];
+        $usuarioId = $resultado['n_identificacion'];
 
         try {
             // Generamos un token único
             $token = bin2hex(random_bytes(50));
 
             // Guardamos el token en la base de datos
-            $updateToken = "UPDATE usuarios SET token = :token WHERE id_usuario = :user_id";
+            $updateToken = "UPDATE usuarios SET token = :token WHERE email = :email";
             $stmt = $conn->prepare($updateToken);
-            $stmt->bindParam(":user_id", $usuarioId, PDO::PARAM_INT);
+            $stmt->bindParam(":email", $correo, PDO::PARAM_STR);
             $stmt->bindParam(":token", $token, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -62,6 +62,7 @@ if (isset($_POST['btnEnviar'])) {
     $message = "No se ha enviado el formulario.";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
