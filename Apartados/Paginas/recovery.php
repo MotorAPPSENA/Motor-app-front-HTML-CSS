@@ -98,6 +98,7 @@ if (isset($_POST['btnEnviar'])) {
                 </form>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

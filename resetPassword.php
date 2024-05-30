@@ -50,19 +50,40 @@ if (isset($_GET['token'])) {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Restablecer Contraseña</title>
+    <link rel="stylesheet" href="../../Estilo Apartados/estiloResetPassword.css">
 </head>
 <body>
-    <h2>Restablecer Contraseña</h2>
-    <?php if (!empty($message)) { echo "<p>$message</p>"; } ?>
-    <?php if (isset($usuarioId)) { ?>
-        <form method="post">
-            <label for="newPassword">Nueva Contraseña:</label>
-            <input type="password" id="newPassword" name="newPassword" required>
-            <button type="submit" name="btnResetPassword">Restablecer Contraseña</button>
-        </form>
-    <?php } ?>
+    <div class="form-container">
+        <div class="login-container">
+            <div class="contenedorLogo">
+                <a href="../../Nosotros.php"><img class="estiloLogoInicioSesion" src="../../Imagenes/LogoMotorApp.jpg"
+                        alt="Logo MotorApp"></a>
+            </div>
+            <div form-container-two>
+                <form method="post" class="recoveryForm">
+                    <p>
+                        <input class="input" type="email" name="emailButton" id="emailButton"
+                            placeholder="Restablecer Contraseña" />
+                    </p>
+                    <?php if (!empty($message)) {
+                        echo "<p>$message</p>";
+                    } ?>
+                    <?php if (isset($usuarioId)) { ?>
+                        <form method="post">
+                            <label for="newPassword">Nueva Contraseña:</label>
+                            <input class="input" type="password" id="newPassword" name="newPassword" required>
+                            <button class="btn btn-login" type="submit" name="btnResetPassword">Restablecer
+                                Contraseña</button>
+                        </form>
+                    <?php } ?>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
