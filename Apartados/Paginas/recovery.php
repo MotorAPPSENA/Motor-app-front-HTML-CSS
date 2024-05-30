@@ -40,7 +40,7 @@ if (isset($_POST['btnEnviar'])) {
         $stmt->execute();
 
          // Enviamos el correo electrónico
-         $resetLink = "https://motorappsena.com/resetPassword.php?token=" . $token;
+         $resetLink = "https://motorappsena.com/resetPassword.php";
 
         $to = $correo;
         $subject = "Recuperación de contraseña";
