@@ -65,10 +65,6 @@ if (isset($_GET['token'])) {
             </div>
             <div form-container-two>
                 <form method="post" class="recoveryForm">
-                    <p>
-                        <input class="input" type="email" name="emailButton" id="emailButton"
-                            placeholder="Restablecer Contraseña" />
-                    </p>
                     <?php if (!empty($message)) {
                         echo "<p>$message</p>";
                     } ?>
