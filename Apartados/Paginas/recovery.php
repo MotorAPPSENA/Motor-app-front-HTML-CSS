@@ -28,35 +28,38 @@ if (isset($_POST['btnEnviar'])) {
         $nombreUsuario = $resultado['nombre'];
         $usuarioId = $resultado['id_usuario'];
 
-        // Generamos un token único
-        $token = bin2hex(random_bytes(50));
-        $expiry_time = date('Y-m-d H:i:s', strtotime('+1 hour')); // Token válido por 1 hora
+        try {
+            // Generamos un token único
+            $token = bin2hex(random_bytes(50));
 
-        // Guardamos el token en la base de datos
-        $updateToken = "UPDATE usuarios SET token = :token WHERE id_usuario = :user_id";
-        $stmt = $conn->prepare($updateToken);
-        $stmt->bindParam(":user_id", $usuarioId, PDO::PARAM_INT);
-        $stmt->bindParam(":token", $token, PDO::PARAM_STR);
-        $stmt->execute();
+            // Guardamos el token en la base de datos
+            $updateToken = "UPDATE usuarios SET token = :token WHERE id_usuario = :user_id";
+            $stmt = $conn->prepare($updateToken);
+            $stmt->bindParam(":user_id", $usuarioId, PDO::PARAM_INT);
+            $stmt->bindParam(":token", $token, PDO::PARAM_STR);
+            $stmt->execute();
 
-         // Enviamos el correo electrónico
-         $resetLink = "https://motorappsena.com/resetPassword.php";
+            // Enviamos el correo electrónico
+            $resetLink = "https://motorappsena.com/resetPassword.php?token=" . $token;
 
-        $to = $correo;
-        $subject = "Recuperación de contraseña";
-        $body = "Hola $nombreUsuario, \n\nHaz clic en el siguiente enlace para restablecer tu Password: \n\n$resetLink \n\nEste enlace es válido por 1 hora.";
-        $headers = "From: Motorappsena.com";
+            $to = $correo;
+            $subject = "Recuperación de contraseña";
+            $body = "Hola $nombreUsuario, \n\nHaz clic en el siguiente enlace para restablecer tu contraseña: \n\n$resetLink \n\nEste enlace es válido indefinidamente hasta que sea usado.";
+            $headers = "From: Motorappsena.com";
 
-        if (mail($to, $subject, $body, $headers)) {
-            $message = "Hemos enviado un enlace de recuperación a tu correo.";
-        } else {
-            $message = "Hubo un error al enviar el correo.";
+            if (mail($to, $subject, $body, $headers)) {
+                $message = "Hemos enviado un enlace de recuperación a tu correo.";
+            } else {
+                $message = "Hubo un error al enviar el correo.";
+            }
+        } catch (Exception $e) {
+            $message = "Error al generar el token o enviar el correo: " . $e->getMessage();
         }
     } else {
         $message = "El correo no existe en la base de datos.";
     }
 } else {
-    echo "No se ha enviado el formulario.";
+    $message = "No se ha enviado el formulario.";
 }
 ?>
 
