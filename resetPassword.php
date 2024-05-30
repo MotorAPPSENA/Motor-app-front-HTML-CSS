@@ -8,7 +8,7 @@ if (isset($_GET['token'])) {
     $token = $_GET['token'];
 
     // Preparamos la consulta para verificar el token
-    $consultaToken = "SELECT id_usuario FROM usuarios WHERE token = :token AND token_expiry > NOW()";
+    $consultaToken = "SELECT n_identificacion FROM usuarios WHERE token = :token";
     $statement = $conn->prepare($consultaToken);
 
     // Asociamos el parámetro de la consulta
@@ -20,7 +20,7 @@ if (isset($_GET['token'])) {
     // Verificamos si el token es válido
     if ($statement->rowCount() > 0) {
         $resultado = $statement->fetch(PDO::FETCH_ASSOC);
-        $usuarioId = $resultado['id_usuario'];
+        $usuarioId = $resultado['n_identificacion'];
 
         if (isset($_POST['btnResetPassword'])) {
             $nuevaContrasena = $_POST['newPassword'];
@@ -29,7 +29,7 @@ if (isset($_GET['token'])) {
             if (strlen($nuevaContrasena) >= 8) {
                 // Actualizamos la contraseña en la base de datos
                 $hashContrasena = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
-                $updatePassword = "UPDATE usuarios SET password = :password, token = NULL, token_expiry = NULL WHERE id_usuario = :user_id";
+                $updatePassword = "UPDATE usuarios SET password = :password, token = NULL WHERE n_identificacion = :user_id";
                 $stmt = $conn->prepare($updatePassword);
                 $stmt->bindParam(":password", $hashContrasena, PDO::PARAM_STR);
                 $stmt->bindParam(":user_id", $usuarioId, PDO::PARAM_INT);
@@ -41,10 +41,10 @@ if (isset($_GET['token'])) {
             }
         }
     } else {
-        $message = "El enlace de recuperación es inválido o ha expirado.";
+        $message = "El enlace de recuperación es inválido.";
     }
 } else {
-    $message = "No se ha proporcionado un token.";
+    $message = "No se proporcionó un token.";
 }
 ?>
 
