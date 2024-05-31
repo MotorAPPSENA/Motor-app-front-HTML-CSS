@@ -3,18 +3,36 @@ require_once "../../database.php";
 
 $message = "";
 
-if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"])) {
+if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_POST["email"]) && !empty($_POST["telefono"])) {
     // Verificar si el número de identificación ya existe
     $checkSql = "SELECT COUNT(*) FROM usuarios WHERE n_identificacion = :n_identificacion";
     $checkStmt = $conn->prepare($checkSql);
     $checkStmt->bindParam(":n_identificacion", $_POST["n_identificacion"]);
     $checkStmt->execute();
-    $count = $checkStmt->fetchColumn();
+    $countIdentificacion = $checkStmt->fetchColumn();
 
-    if ($count > 0) {
-        $message = "El número de identificación ya está registrado.";
+    // Verificar si el correo electrónico ya existe
+    $checkEmailSql = "SELECT COUNT(*) FROM usuarios WHERE email = :email";
+    $checkEmailStmt = $conn->prepare($checkEmailSql);
+    $checkEmailStmt->bindParam(":email", $_POST["email"]);
+    $checkEmailStmt->execute();
+    $countEmail = $checkEmailStmt->fetchColumn();
+
+    // Verificar si el número de teléfono ya existe
+    $checkTelefonoSql = "SELECT COUNT(*) FROM usuarios WHERE telefono = :telefono";
+    $checkTelefonoStmt = $conn->prepare($checkTelefonoSql);
+    $checkTelefonoStmt->bindParam(":telefono", $_POST["telefono"]);
+    $checkTelefonoStmt->execute();
+    $countTelefono = $checkTelefonoStmt->fetchColumn();
+
+    if ($countIdentificacion > 0) {
+        $message = "¡¡El Número de identificación que ingresaste ya se encuentra registrado!!";
+    } elseif ($countEmail > 0) {
+        $message = "¡¡El Correo electrónico que ingresaste ya se encuentra registrado!!";
+    } elseif ($countTelefono > 0) {
+        $message = "¡¡El Número de teléfono que ingresaste ya se encuentra registrado!!";
     } else {
-        // Si no existe, proceder con la inserción
+        // Si no existen duplicados, proceder con la inserción
         $sql = "INSERT INTO usuarios(n_identificacion, nombre, passwrd, telefono, email, fecha_nacimiento) 
                 VALUES (:n_identificacion, :nombre, :passwrd, :telefono, :email, :fecha_nacimiento)";
         $stmt = $conn->prepare($sql);
@@ -29,11 +47,14 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"])) {
         if ($stmt->execute()) {
             $message = "¡¡Registro exitoso! Inicia Sesión!!";
         } else {
-            $message = "Error en registro.";
+            $message = "¡¡Error en registro!!";
         }
     }
+} else {
+    $message = "Por favor completa todos los campos.";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -50,8 +71,8 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"])) {
     <div class="form-container">
         <div class="login-container">
             <div class="contenedorLogo">
-                <a href="../../Nosotros.php"><img class="estiloLogoInicioSesion"
-                        src="../../Imagenes/LogoMotorApp.jpg" alt="Logo MotorApp"></a>
+                <a href="../../Nosotros.php"><img class="estiloLogoInicioSesion" src="../../Imagenes/LogoMotorApp.jpg"
+                        alt="Logo MotorApp"></a>
             </div>
             <h2>Bienvenido</h2>
             <p>Por favor registra los datos solicitados</p>
@@ -91,23 +112,25 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"])) {
                     </div>
             </div>
             <div class="contPanelInferior">
-            <p>
-                <button class="btn btn-login" value="Registrarse" id="registro" name="registro"
-                    type="submit">Registrarse</button>
-                </form>
-                <?php if (!empty($message)): ?>
-                <div class="excepcionRegistro">
-                    <a href="Login.php"><button class="btnExcepcion"><?= $message ?></button></a>
-                </div>
-            <?php endif; ?>
+                <p>
+                    <button class="btn btn-login" value="Registrarse" id="registro" name="registro"
+                        type="submit">Registrarse</button>
+                    </form>
+                <a href="Login.php"><button class="btn btn-login" value="InicioSesion" id="InicioSesion"
+                                name="InicioSesion" type="submit">Iniciar sesíon</button></a>
             </div>
+            <?php if (!empty($message)): ?> 
+                    <div>
+                        <h2 class="excepcionesRegistro" ><?= $message ?></h2>
+                    </div>
+                <?php endif; ?>
             <div class="contPanelInferior">
-            </p>
-            <span> Elegir otro metodo de autenticación</span>
-            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer"><button
-                    class="btn btn-Google">Google</button></a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><button
-                    class="btn btn-Facebook">Facebook</button></a>
+                </p>
+                <span> Elegir otro metodo de autenticación</span>
+                <a href="https://www.google.com" target="_blank" rel="noopener noreferrer"><button
+                        class="btn btn-Google">Google</button></a>
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><button
+                        class="btn btn-Facebook">Facebook</button></a>
             </div>
         </div>
 </body>
