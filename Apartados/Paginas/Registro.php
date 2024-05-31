@@ -1,30 +1,39 @@
 <?php
 require_once "../../database.php";
 
-
 $message = "";
 
 if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"])) {
-    $sql = "INSERT INTO usuarios(n_identificacion, nombre, passwrd, telefono, email, fecha_nacimiento) 
-        VALUES (:n_identificacion,:nombre,:passwrd,:telefono,:email,:fecha_nacimiento)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(":n_identificacion", $_POST["n_identificacion"]);
-    $password = password_hash($_POST["passwrd"], PASSWORD_BCRYPT);
-    $stmt->bindParam(":passwrd", $password);
-    $stmt->bindParam(":nombre", $_POST["nombre"]);
-    $stmt->bindParam(":telefono", $_POST["telefono"]);
-    $stmt->bindParam(":email", $_POST["email"]);
-    $stmt->bindParam(":fecha_nacimiento", $_POST["fecha_nacimiento"]);
+    // Verificar si el número de identificación ya existe
+    $checkSql = "SELECT COUNT(*) FROM usuarios WHERE n_identificacion = :n_identificacion";
+    $checkStmt = $conn->prepare($checkSql);
+    $checkStmt->bindParam(":n_identificacion", $_POST["n_identificacion"]);
+    $checkStmt->execute();
+    $count = $checkStmt->fetchColumn();
 
-    if ($stmt->execute()) {
-        $message = "¡¡Registro exitoso Inicia Sesión!!";
+    if ($count > 0) {
+        $message = "El número de identificación ya está registrado.";
     } else {
-        $message = "Error en registro";
-    }
+        // Si no existe, proceder con la inserción
+        $sql = "INSERT INTO usuarios(n_identificacion, nombre, passwrd, telefono, email, fecha_nacimiento) 
+                VALUES (:n_identificacion, :nombre, :passwrd, :telefono, :email, :fecha_nacimiento)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":n_identificacion", $_POST["n_identificacion"]);
+        $password = password_hash($_POST["passwrd"], PASSWORD_BCRYPT);
+        $stmt->bindParam(":passwrd", $password);
+        $stmt->bindParam(":nombre", $_POST["nombre"]);
+        $stmt->bindParam(":telefono", $_POST["telefono"]);
+        $stmt->bindParam(":email", $_POST["email"]);
+        $stmt->bindParam(":fecha_nacimiento", $_POST["fecha_nacimiento"]);
 
+        if ($stmt->execute()) {
+            $message = "¡¡Registro exitoso! Inicia Sesión!!";
+        } else {
+            $message = "Error en registro.";
+        }
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
