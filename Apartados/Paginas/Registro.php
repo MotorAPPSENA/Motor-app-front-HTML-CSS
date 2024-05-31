@@ -3,7 +3,7 @@ require_once "../../database.php";
 
 $message = "";
 
-if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_POST["email"]) && !empty($_POST["telefono"])) {
+if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_POST["email"]) && !empty($_POST["telefono"]) && !empty($_POST["fecha_nacimiento"])) {
     // Verificar si el número de identificación ya existe
     $checkSql = "SELECT COUNT(*) FROM usuarios WHERE n_identificacion = :n_identificacion";
     $checkStmt = $conn->prepare($checkSql);
@@ -25,14 +25,21 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_
     $checkTelefonoStmt->execute();
     $countTelefono = $checkTelefonoStmt->fetchColumn();
 
+    // Verificar si el usuario es mayor de 18 años
+    $fechaNacimiento = new DateTime($_POST["fecha_nacimiento"]);
+    $hoy = new DateTime();
+    $edad = $hoy->diff($fechaNacimiento)->y;
+
     if ($countIdentificacion > 0) {
         $message = "¡¡El Número de identificación que ingresaste ya se encuentra registrado!!";
     } elseif ($countEmail > 0) {
         $message = "¡¡El Correo electrónico que ingresaste ya se encuentra registrado!!";
     } elseif ($countTelefono > 0) {
         $message = "¡¡El Número de teléfono que ingresaste ya se encuentra registrado!!";
+    } elseif ($edad < 18) {
+        $message = "¡¡Debes ser mayor de 18 años para registrarte!!";
     } else {
-        // Si no existen duplicados, proceder con la inserción
+        // Si no existen duplicados y el usuario es mayor de 18 años, proceder con la inserción
         $sql = "INSERT INTO usuarios(n_identificacion, nombre, passwrd, telefono, email, fecha_nacimiento) 
                 VALUES (:n_identificacion, :nombre, :passwrd, :telefono, :email, :fecha_nacimiento)";
         $stmt = $conn->prepare($sql);
@@ -54,7 +61,6 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_
     $message = "Por favor completa todos los campos.";
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
