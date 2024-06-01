@@ -25,36 +25,42 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_
     $checkTelefonoStmt->execute();
     $countTelefono = $checkTelefonoStmt->fetchColumn();
 
-    // Verificar si el usuario es mayor de 18 años
+    // Verificar si la fecha de nacimiento es válida y no es una fecha futura
     $fechaNacimiento = new DateTime($_POST["fecha_nacimiento"]);
     $hoy = new DateTime();
-    $edad = $hoy->diff($fechaNacimiento)->y;
 
-    if ($countIdentificacion > 0) {
-        $message = "¡¡El Número de identificación que ingresaste ya se encuentra registrado!!";
-    } elseif ($countEmail > 0) {
-        $message = "¡¡El Correo electrónico que ingresaste ya se encuentra registrado!!";
-    } elseif ($countTelefono > 0) {
-        $message = "¡¡El Número de teléfono que ingresaste ya se encuentra registrado!!";
-    } elseif ($edad < 18) {
-        $message = "¡¡Debes ser mayor de 18 años para registrarte!!";
+    if ($fechaNacimiento > $hoy) {
+        $message = "¡¡La fecha de nacimiento no puede ser una fecha futura!!";
     } else {
-        // Si no existen duplicados y el usuario es mayor de 18 años, proceder con la inserción
-        $sql = "INSERT INTO usuarios(n_identificacion, nombre, passwrd, telefono, email, fecha_nacimiento) 
-                VALUES (:n_identificacion, :nombre, :passwrd, :telefono, :email, :fecha_nacimiento)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(":n_identificacion", $_POST["n_identificacion"]);
-        $password = password_hash($_POST["passwrd"], PASSWORD_BCRYPT);
-        $stmt->bindParam(":passwrd", $password);
-        $stmt->bindParam(":nombre", $_POST["nombre"]);
-        $stmt->bindParam(":telefono", $_POST["telefono"]);
-        $stmt->bindParam(":email", $_POST["email"]);
-        $stmt->bindParam(":fecha_nacimiento", $_POST["fecha_nacimiento"]);
+        // Verificar si el usuario es mayor de 18 años
+        $edad = $hoy->diff($fechaNacimiento)->y;
 
-        if ($stmt->execute()) {
-            $message = "¡¡Registro exitoso! Inicia Sesión!!";
+        if ($countIdentificacion > 0) {
+            $message = "¡¡El Número de identificación que ingresaste ya se encuentra registrado!!";
+        } elseif ($countEmail > 0) {
+            $message = "¡¡El Correo electrónico que ingresaste ya se encuentra registrado!!";
+        } elseif ($countTelefono > 0) {
+            $message = "¡¡El Número de teléfono que ingresaste ya se encuentra registrado!!";
+        } elseif ($edad < 18) {
+            $message = "¡¡Debes ser mayor de 18 años para registrarte!!";
         } else {
-            $message = "¡¡Error en registro!!";
+            // Si no existen duplicados y el usuario es mayor de 18 años, proceder con la inserción
+            $sql = "INSERT INTO usuarios(n_identificacion, nombre, passwrd, telefono, email, fecha_nacimiento) 
+                    VALUES (:n_identificacion, :nombre, :passwrd, :telefono, :email, :fecha_nacimiento)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(":n_identificacion", $_POST["n_identificacion"]);
+            $password = password_hash($_POST["passwrd"], PASSWORD_BCRYPT);
+            $stmt->bindParam(":passwrd", $password);
+            $stmt->bindParam(":nombre", $_POST["nombre"]);
+            $stmt->bindParam(":telefono", $_POST["telefono"]);
+            $stmt->bindParam(":email", $_POST["email"]);
+            $stmt->bindParam(":fecha_nacimiento", $_POST["fecha_nacimiento"]);
+
+            if ($stmt->execute()) {
+                $message = "¡¡Registro exitoso! Inicia Sesión!!";
+            } else {
+                $message = "¡¡Error en registro!!";
+            }
         }
     }
 } else {
@@ -88,8 +94,8 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_
                     <div class="bloqueUno">
                         <div class="bloid">
                             <label for="identificacion">Numero de identificación</label>
-                            <input class="input" type="text" name="n_identificacion" id="n_identificacion" autofocus
-                                required />
+                            <input class="input" type="text" name="n_identificacion" id="n_identificacion" autofocus 
+                                required   required pattern="\d*" title="¡¡El formato que ingresaste no es correcto!!"/>
                         </div>
                         <div class="bloid">
                             <label for="nombre">Nombre</label>
@@ -103,7 +109,7 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_
                         </div>
                         <div class="bloid">
                             <label for="telefono">Numero de telefono</label>
-                            <input class="input" type="text" name="telefono" id="telefono" required />
+                            <input class="input" type="text" name="telefono" id="telefono" required required pattern="\d*" title="¡¡El formato que ingresaste no es correcto!!" />
                         </div>
                     </div>
                     <div class="bloqueTres">
