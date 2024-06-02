@@ -87,7 +87,6 @@ if (!empty($_POST["n_identificacion"]) && !empty($_POST["passwrd"]) && !empty($_
                         alt="Logo MotorApp"></a>
             </div>
             <h2>Bienvenido</h2>
-            <p>Por favor registra los datos solicitados</p>
             <div>
                 <form class="Bloques" id="registro" name="registro" method="post" action="Registro.php"
                     autocomplete="off">
