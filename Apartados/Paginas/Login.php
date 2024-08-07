@@ -28,8 +28,10 @@ if (isset($_POST['btningresar'])) {
                 
                 if ($rolUsuario == 0 || $rolUsuario == 1) {
                     header("Location: ../../Perfil.php");
-                } else {
+                } elseif ($rolUsuario == 2){
                     header("Location: ../../PerfilAdmin.php");
+                }else {
+                    $message("No tienes rol asignado");
                 }
             } else {
                 $message = "Error en la autenticación"; // Mensaje de error
