@@ -6,10 +6,8 @@ body {
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bolder;
-    padding-left: 52px;
+    padding-left: 5%;
     background-image: url(../Imagenes/fondoTaller.jpg);
-
-
 }
 
 
@@ -19,7 +17,7 @@ nav{
     display: flex;
     align-items:initial;
     flex-direction: column;
-    width:13%;
+    width:14%;
     backdrop-filter: blur(0.1rem);
     background: #0101217b;
 
@@ -92,97 +90,14 @@ nav .estiloInicio {
 }
 
 /* Aqui terminan estilos de nuestra barra lateral*/
-/* Aqui Comienzan estilos de nuestra tabla de pedidos*/
-
-table{
-   border-spacing: 0;
-   border-collapse: collapse;
-   width: 800px;
-   margin-left: 200px;
-   margin-top: 80px;
-}
-
-td, th{
-    border:solid 3px #000000;
-    padding: 5px;
-}
-
-tbody tr{
-    backdrop-filter: blur(0.1rem);
-    background: #0101217b;
-    color: rgb(193, 193, 193);
-}
-
-td:nth-child(n + 3),
-th:nth-child(n + 3){
-    text-align: center;
-}
-
-
-
-tbody tr:hover{
-    backdrop-filter: blur(0.1rem);
-    background: #0000107b;
-}
 
 thead {
     backdrop-filter: blur(0.1rem);
     background: #0101217b;
-    color: rgb(208, 208, 208);
+    color: rgb(209, 209, 209);
     position: sticky;
     top: 35.5px;
     z-index: 100;
     margin-top: 0;
 
-}
-
-caption{
-    backdrop-filter: blur(0.1rem);
-    background: #0101217b;
-    color: rgb(255, 255, 255);
-    font-size: 2.3em;
-    position: sticky;
-    top: 0px;
-    z-index: 200;
-}
-
-.tamañoImgPedidos {
-    width: 80px;
-    height: 80px;
-    border-radius: 10%;
-}
-
-
-/* Aqui Comienzan estilos de nuestra tabla 2 carrito de pedidos*/
-
-.contenedorTablas{
-    display: flex;
-    align-items:start;
-    height: 100%;
-    width: 90%;
-}
-
-
-table td button {
-    background: #fafafa00;
-    backdrop-filter: blur(0.4rem);
-    border-radius: 10%;
-    color: rgb(199, 199, 199);
-    margin: 5px auto;
-    width: 100%;
-    height: 50%;
-    box-shadow: 0 2px 5px rgb(0, 0, 0);
-    font-weight:bolder;
-    
-}
-
-table td button:hover{
-    background-color: rgba(255, 255, 255, 0.342);
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-
-.botonesTablas{
-    display:block;
 }

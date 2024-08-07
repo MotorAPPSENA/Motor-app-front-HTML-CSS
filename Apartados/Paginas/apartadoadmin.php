@@ -7,6 +7,16 @@ if(!isset($_SESSION['n_identificacion'])) {
     header("Location: login.php");
     exit();
 }
+
+// Conectar a la base de datos
+include 'database.php'; // Asegúrate de que este archivo contiene tu lógica de conexión a la base de datos
+
+// Obtener la información del usuario
+$n_identificacion = $_SESSION['n_identificacion'];
+$query = "SELECT nombre, foto_perfil FROM usuarios WHERE n_identificacion = :n_identificacion";
+$stmt = $conn->prepare($query);
+$stmt->execute(['n_identificacion' => $n_identificacion]);
+$usuario = $stmt->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +36,8 @@ if(!isset($_SESSION['n_identificacion'])) {
                 <div class="bar">Inicio</div>
             </a>
             <div class="user">
-                <img src="Imagenes/fotoPerfil.jpg" alt="perfil">
-                <div class="name">Nombre Administrador</div>
+                <img src="<?php echo $usuario['foto_perfil'] ?: 'Imagenes/fotoPerfil.jpg'; ?>" alt="perfil">
+                <div class="name"><?php echo htmlspecialchars($usuario['nombre']); ?></div>
             </div>
         </header>
         <div class="links">
@@ -75,7 +85,7 @@ if(!isset($_SESSION['n_identificacion'])) {
                 </div>
                 <div class="title">Configuración</div>
             </a>
-            <a href="#">
+            <a href="index.php">
                 <div class="icon">
                     <span class="iconify" data-icon="flat-color-icons:about" data-width="32" data-heigth="32"></span>
                 </div>
@@ -83,3 +93,5 @@ if(!isset($_SESSION['n_identificacion'])) {
             </a>
         </div>
     </nav>
+</body>
+</html>

@@ -17,7 +17,7 @@
                     <div class="flip-card-back">
                         <h3>Fredy</h3>
                         <p>Estudiante desarrollo de software</p>
-                        <p>me gusta la educacion fisica</p>
+                        <p>En el cruce entre la justicia y la tecnología. Armado con curiosidad y disciplina, exploro el mundo del código con el mismo empeño que pongo en mi labor diaria. Cada línea de código es un nuevo desafío, y cada proyecto, una misión hacia la innovación y el progreso.</p>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     <div class="flip-card-back">
                         <h3>Edisson</h3>
                         <p>Estudiante desarrollo de software</p>
-                        <p>me gusta javascrip</p>
+                        <p> Con cada línea que escribo, convierto ideas en realidad y enfrenta desafíos con creatividad y determinación. Su amor por la programación no solo impulsa su aprendizaje, sino que también le permite explorar un mundo de infinitas posibilidades digitales.</p>
                     </div>
                 </div>
             </div>

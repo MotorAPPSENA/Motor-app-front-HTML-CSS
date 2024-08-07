@@ -1,0 +1,78 @@
+body{
+    margin-left: 10%;
+}
+
+.contenedorFormulario{
+    backdrop-filter: blur(0.1rem);
+    background: #363349af;
+    display: flex;
+    align-items:start;
+    justify-content: center;
+    max-width: 22%;
+    text-align: center;
+}
+
+.tituloFormulario{
+    font-size: 1.2em;
+    margin: 0 auto;
+    color: rgb(255, 255, 255);
+    margin-bottom: 15px;
+    display: block;
+    padding:0 auto;
+
+}
+.inputFormulario{
+    width: 80%;
+    padding: 4px;
+    margin-bottom: 5px;
+    border: 1px solid #081049;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.botonAgregarFormulario{
+    backdrop-filter: blur(0.1rem);
+    background: #0e582079;
+    color: white;
+    font-size: .8em;
+    border-radius: 8%;
+    cursor: pointer;
+    width: 40%;
+    padding: 5px;
+    margin: 2px;
+}
+
+.contenedorTabla{
+    backdrop-filter: blur(0.1rem);
+    background: #2a254a90;
+    max-width: 22%;
+    margin-top: 10px;
+    text-align: start;
+    margin-left: 0px;
+}
+
+.tituloFormularioSuperior{
+    font-size: .7em;
+    margin: 0 auto;
+    color: rgb(255, 255, 255);
+    margin-bottom: 15px;
+    display: block;
+    padding:0 auto;
+}
+
+/*Estilos de tabla*/
+
+td, th{
+    border:solid 3px #000000;
+    padding: 5px;
+}
+
+table{
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 800px;
+    margin-left: 200px;
+    margin-top: 80px;
+ }
