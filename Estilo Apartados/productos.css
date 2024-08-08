@@ -19,12 +19,17 @@ td, th{
 
 /*Estilos formulario*/
 
+
 .contenedorProductos {
     display: flex;
     justify-content: space-around;
-    width: 82%;
+    width: 90%;
 }
 
+.contenedor {
+    display: flex;
+    align-items:start;
+}
 .contenedorFormulario {
     background-color: red;
 }
@@ -75,8 +80,11 @@ td, th{
     cursor: pointer;
     width: 100%;
     padding: 5px;
-    margin: 2px;
-
+    margin-top: 10px;
+}
+.BotonAgregar:hover {
+    backdrop-filter: blur(0.1rem);
+    background: #201e2caf;
 }
 
 .botonesformulario{

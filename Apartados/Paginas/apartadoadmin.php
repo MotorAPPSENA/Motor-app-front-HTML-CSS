@@ -43,14 +43,14 @@ $usuario = $stmt->fetch();
         <div class="links">
             <a href="productos.php">
                 <div class="icon">
-                    <span class="iconify-inline" data-icon="flat-color-icons:assistant" data-width="32"
+                    <span class="iconify-inline" data-icon="flat-color-icons:about" data-width="32"
                         data-heigth="32"></span>
                 </div>
                 <div class="title">Productos</div>
             </a>
             <a href="proveedores.php">
                 <div class="icon">
-                    <span class="iconify" data-icon="flat-color-icons:contacts" data-width="32" data-heigth="32">
+                    <span class="iconify" data-icon="flat-color-icons:about" data-width="32" data-heigth="32">
                     </span>
                 </div>
                 <div class="title">Proveedores</div>

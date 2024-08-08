@@ -1,10 +1,17 @@
 <?php
 require_once 'database.php';
 
-// Manejo del formulario para agregar productos
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['agregarProducto'])) {
-    // Recoger datos del formulario y asegurar que no estén vacíos
-    $referenciaProducto = !empty($_POST['referenciaProducto']) ? intval($_POST['referenciaProducto']) : null;
+// Obtener la siguiente referencia automática para el producto
+function obtenerSiguienteReferencia($conn) {
+    $sql = "SELECT MAX(referencia_producto) AS max_referencia FROM productos";
+    $stmt = $conn->query($sql);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['max_referencia'] + 1;
+}
+
+// Manejo del formulario para agregar/editar productos
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $referenciaProducto = !empty($_POST['referenciaProducto']) ? intval($_POST['referenciaProducto']) : obtenerSiguienteReferencia($conn);
     $nombreProducto = !empty($_POST['nombreProducto']) ? $_POST['nombreProducto'] : null;
     $descripcion = !empty($_POST['descripcion']) ? $_POST['descripcion'] : null;
     $categoria = !empty($_POST['categoria']) ? intval($_POST['categoria']) : null;
@@ -17,28 +24,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['agregarProducto'])) {
     $ubicacionEnAlmacen = !empty($_POST['ubicacionEnAlmacen']) ? $_POST['ubicacionEnAlmacen'] : null;
     $estado = !empty($_POST['estado']) ? intval($_POST['estado']) : null;
 
-    if ($referenciaProducto && $nombreProducto && $descripcion && $categoria && $precio !== null && $cantidadEnStock !== null && $proveedor && $codigoDeBarras && $fechaAdquisicion && $marca && $ubicacionEnAlmacen && $estado) {
-        $sql = "INSERT INTO productos (referencia_producto, nombre_producto, descripcion_producto, id_categoria, precio_producto, cantidad_stock, id_proveedor, codigo_barras_producto, fecha_adquisicion_producto, id_marca, ubicacion_almacen_producto, id_estado)
-                VALUES (:referencia, :nombre, :descripcion, :categoria, :precio, :stock, :proveedor, :codigo, :fecha, :marca, :ubicacion, :estado)";
+    if ($nombreProducto && $descripcion && $categoria && $precio !== null && $cantidadEnStock !== null && $proveedor && $codigoDeBarras && $fechaAdquisicion && $marca && $ubicacionEnAlmacen && $estado) {
+        if (isset($_POST['editarProducto']) && $_POST['editarProducto'] == 'true') {
+            // Código para editar producto
+            $sql = "UPDATE productos SET nombre_producto = :nombre, descripcion_producto = :descripcion, id_categoria = :categoria, precio_producto = :precio, cantidad_stock = :stock, id_proveedor = :proveedor, codigo_barras_producto = :codigo, fecha_adquisicion_producto = :fecha, id_marca = :marca, ubicacion_almacen_producto = :ubicacion, id_estado = :estado WHERE referencia_producto = :referencia";
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':referencia', $referenciaProducto);
-        $stmt->bindParam(':nombre', $nombreProducto);
-        $stmt->bindParam(':descripcion', $descripcion);
-        $stmt->bindParam(':categoria', $categoria);
-        $stmt->bindParam(':precio', $precio);
-        $stmt->bindParam(':stock', $cantidadEnStock);
-        $stmt->bindParam(':proveedor', $proveedor);
-        $stmt->bindParam(':codigo', $codigoDeBarras);
-        $stmt->bindParam(':fecha', $fechaAdquisicion);
-        $stmt->bindParam(':marca', $marca);
-        $stmt->bindParam(':ubicacion', $ubicacionEnAlmacen);
-        $stmt->bindParam(':estado', $estado);
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':referencia', $referenciaProducto);
+            $stmt->bindParam(':nombre', $nombreProducto);
+            $stmt->bindParam(':descripcion', $descripcion);
+            $stmt->bindParam(':categoria', $categoria);
+            $stmt->bindParam(':precio', $precio);
+            $stmt->bindParam(':stock', $cantidadEnStock);
+            $stmt->bindParam(':proveedor', $proveedor);
+            $stmt->bindParam(':codigo', $codigoDeBarras);
+            $stmt->bindParam(':fecha', $fechaAdquisicion);
+            $stmt->bindParam(':marca', $marca);
+            $stmt->bindParam(':ubicacion', $ubicacionEnAlmacen);
+            $stmt->bindParam(':estado', $estado);
 
-        if ($stmt->execute()) {
-            echo "Nuevo producto agregado exitosamente";
+            if ($stmt->execute()) {
+                echo "Producto actualizado exitosamente";
+            } else {
+                echo "Error al actualizar el producto";
+            }
         } else {
-            echo "Error al agregar el producto";
+            // Código para agregar producto
+            $sqlCheck = "SELECT COUNT(*) AS count FROM productos WHERE referencia_producto = :referencia";
+            $stmtCheck = $conn->prepare($sqlCheck);
+            $stmtCheck->bindParam(':referencia', $referenciaProducto);
+            $stmtCheck->execute();
+            $rowCheck = $stmtCheck->fetch(PDO::FETCH_ASSOC);
+
+            if ($rowCheck['count'] == 0) {
+                $sql = "INSERT INTO productos (referencia_producto, nombre_producto, descripcion_producto, id_categoria, precio_producto, cantidad_stock, id_proveedor, codigo_barras_producto, fecha_adquisicion_producto, id_marca, ubicacion_almacen_producto, id_estado)
+                        VALUES (:referencia, :nombre, :descripcion, :categoria, :precio, :stock, :proveedor, :codigo, :fecha, :marca, :ubicacion, :estado)";
+                
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':referencia', $referenciaProducto);
+                $stmt->bindParam(':nombre', $nombreProducto);
+                $stmt->bindParam(':descripcion', $descripcion);
+                $stmt->bindParam(':categoria', $categoria);
+                $stmt->bindParam(':precio', $precio);
+                $stmt->bindParam(':stock', $cantidadEnStock);
+                $stmt->bindParam(':proveedor', $proveedor);
+                $stmt->bindParam(':codigo', $codigoDeBarras);
+                $stmt->bindParam(':fecha', $fechaAdquisicion);
+                $stmt->bindParam(':marca', $marca);
+                $stmt->bindParam(':ubicacion', $ubicacionEnAlmacen);
+                $stmt->bindParam(':estado', $estado);
+
+                if ($stmt->execute()) {
+                    echo "Nuevo producto agregado exitosamente";
+                } else {
+                    echo "Error al agregar el producto";
+                }
+            } else {
+                echo "La referencia del producto ya existe. No se puede duplicar.";
+            }
         }
     } else {
         echo "Por favor, complete todos los campos del formulario.";
@@ -58,13 +101,14 @@ $result = $conn->query($sql);
 
 <?php require_once 'Apartados/Paginas/apartadoadmin.php'; ?>
 <link rel="stylesheet" href="Estilo Apartados/productos.css">
+<div class="contenedor">
 <div class="contenedorProductos">
     <div class="contenedorFormulario">
         <h1 class="tituloContenedor">Añadir productos</h1>
         <form id="product-form" action="productos.php" method="post">
             <div>
                 <label for="referenciaProducto">Referencia del producto</label>
-                <input type="text" id="referenciaProducto" name="referenciaProducto" required>
+                <input type="text" id="referenciaProducto" name="referenciaProducto" value="<?php echo obtenerSiguienteReferencia($conn); ?>" readonly>
             </div>
             <div>
                 <label for="nombreProducto">Nombre del Producto</label>
@@ -129,15 +173,15 @@ $result = $conn->query($sql);
                         echo "<option value='{$rowMarca['id_marca']}'>{$rowMarca['nombre_marca']}</option>";
                     }
                     ?>
-                </select><br>
+                </select>
                 <a class="enlacesformulario" href="marcas.php">Agregar Marca</a>
             </div>
             <div>
-                <label for="ubicacionEnAlmacen">Ubicación en Almacén</label>
+                <label for="ubicacionEnAlmacen">Ubicación en el Almacén</label>
                 <input type="text" id="ubicacionEnAlmacen" name="ubicacionEnAlmacen" required>
             </div>
             <div>
-                <label for="estado">Estado</label>
+                <label for="estado">Estado del Producto</label>
                 <select class="listaProductos" id="estado" name="estado" required>
                     <?php
                     // Consulta para obtener los estados disponibles
@@ -149,131 +193,94 @@ $result = $conn->query($sql);
                     ?>
                 </select>
             </div>
-            <div class="botonesformulario">
-            <button type="submit" name="agregarProducto" class="BotonAgregar">Agregar Producto</button>
-            <button type="button" class="BotonAgregar" onclick="clearForm()">Limpiar</button>
-            </div>
+            <input type="hidden" name="editarProducto" id="editarProducto">
+            <button class="BotonAgregar" type="submit">Guardar Producto</button>
+            <button class="BotonAgregar" type="reset" onclick="limpiarFormulario()">Limpiar formulario</button>
         </form>
-    </div>
-    <div class="contenedorListaProductos">
-        <table class="tablaproductos">
-            <thead class="encabezadostabla">
-                <tr>
-                    <th>Referencia</th>
-                    <th>Nombre del Producto</th>
-                    <th>Descripción</th>
-                    <th>Categoría</th>
-                    <th>Precio</th>
-                    <th>Cantidad en Stock</th>
-                    <th>Proveedor</th>
-                    <th>Código de Barras</th>
-                    <th>Fecha de Adquisición</th>
-                    <th>Marca</th>
-                    <th>Ubicación en Almacén</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="product-list">
-                <?php
-                if ($result->rowCount() > 0) {
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                                <td>{$row['referencia_producto']}</td>
-                                <td>{$row['nombre_producto']}</td>
-                                <td>{$row['descripcion_producto']}</td>
-                                <td>{$row['nombre_categoria']}</td>
-                                <td>{$row['precio_producto']}</td>
-                                <td>{$row['cantidad_stock']}</td>
-                                <td>{$row['nombre_proveedor']}</td>
-                                <td>{$row['codigo_barras_producto']}</td>
-                                <td>{$row['fecha_adquisicion_producto']}</td>
-                                <td>{$row['nombre_marca']}</td>
-                                <td>{$row['ubicacion_almacen_producto']}</td>
-                                <td>{$row['nombre_estado']}</td>
-                                <td>
-                                    <button onclick=\"editProduct(this)\">Editar</button>
-                                    <button onclick=\"deleteProduct(this)\">Eliminar</button>
-                                    <button onclick=\"saveProduct(this)\" style=\"display:none;\">Guardar</button>
-                                </td>
-                              </tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='13'>No hay productos</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
     </div>
 </div>
 
+<div class="contenedorProductos">
+    <table>
+        <thead>
+            <tr>
+                <th>Referencia</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Cantidad en Stock</th>
+                <th>Proveedor</th>
+                <th>Código de Barras</th>
+                <th>Fecha de Adquisición</th>
+                <th>Marca</th>
+                <th>Ubicación en el Almacén</th>
+                <th>Estado del Producto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>
+                <tr>
+                    <td><?php echo $row['referencia_producto']; ?></td>
+                    <td><?php echo $row['nombre_producto']; ?></td>
+                    <td><?php echo $row['descripcion_producto']; ?></td>
+                    <td><?php echo $row['nombre_categoria']; ?></td>
+                    <td><?php echo $row['precio_producto']; ?></td>
+                    <td><?php echo $row['cantidad_stock']; ?></td>
+                    <td><?php echo $row['nombre_proveedor']; ?></td>
+                    <td><?php echo $row['codigo_barras_producto']; ?></td>
+                    <td><?php echo $row['fecha_adquisicion_producto']; ?></td>
+                    <td><?php echo $row['nombre_marca']; ?></td>
+                    <td><?php echo $row['ubicacion_almacen_producto']; ?></td>
+                    <td><?php echo $row['nombre_estado']; ?></td>
+                    <td>
+                        <button class="btn-editar-producto" data-producto='<?php echo json_encode($row); ?>'>Editar</button>
+                        <a href="eliminar_producto.php?referencia=<?php echo $row['referencia_producto']; ?>" class="btn-eliminar-producto">Eliminar</a>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+</div>
 <script>
-// Función para limpiar el formulario
-function clearForm() {
-    document.getElementById('product-form').reset();
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const botonesEditar = document.querySelectorAll('.btn-editar-producto');
+    const botonesEliminar = document.querySelectorAll('.btn-eliminar-producto');
 
-// Función para editar un producto de la tabla
-function editProduct(button) {
-    const row = button.closest('tr');
-    const cells = row.getElementsByTagName('td');
-    
-    for (let i = 0; i < cells.length - 1; i++) {
-        const cell = cells[i];
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.value = cell.innerText;
-        cell.innerText = '';
-        cell.appendChild(input);
-    }
-    
-    const saveButton = row.querySelector('button[onclick="saveProduct(this)"]');
-    saveButton.style.display = 'inline';
-    button.style.display = 'none';
-}
+    botonesEditar.forEach(boton => {
+        boton.addEventListener('click', function () {
+            const producto = JSON.parse(this.dataset.producto);
+            document.getElementById('referenciaProducto').value = producto.referencia_producto;
+            document.getElementById('nombreProducto').value = producto.nombre_producto;
+            document.getElementById('descripcion').value = producto.descripcion_producto;
+            document.getElementById('categoria').value = producto.id_categoria;
+            document.getElementById('precio').value = producto.precio_producto;
+            document.getElementById('cantidadEnStock').value = producto.cantidad_stock;
+            document.getElementById('proveedor').value = producto.id_proveedor;
+            document.getElementById('codigoDeBarras').value = producto.codigo_barras_producto;
+            document.getElementById('fechaAdquisicion').value = producto.fecha_adquisicion_producto;
+            document.getElementById('marca').value = producto.id_marca;
+            document.getElementById('ubicacionEnAlmacen').value = producto.ubicacion_almacen_producto;
+            document.getElementById('estado').value = producto.id_estado;
 
-// Función para guardar los cambios de un producto editado en la tabla
-function saveProduct(button) {
-    const row = button.closest('tr');
-    const inputs = row.querySelectorAll('input');
-    const referencia = inputs[0].value;
-
-    if (confirm(`¿Estás seguro de que deseas guardar los cambios para el producto con referencia ${referencia}?`)) {
-        const formData = new FormData();
-        formData.append('referenciaProducto', referencia);
-        formData.append('nombreProducto', inputs[1].value);
-        formData.append('descripcion', inputs[2].value);
-        formData.append('categoria', inputs[3].value);
-        formData.append('precio', inputs[4].value);
-        formData.append('cantidadEnStock', inputs[5].value);
-        formData.append('proveedor', inputs[6].value);
-        formData.append('codigoDeBarras', inputs[7].value);
-        formData.append('fechaAdquisicion', inputs[8].value);
-        formData.append('marca', inputs[9].value);
-        formData.append('ubicacionEnAlmacen', inputs[10].value);
-        formData.append('estado', inputs[11].value);
-
-        fetch('editar_producto.php', {
-            method: 'POST',
-            body: formData
-        }).then(response => response.text())
-        .then(data => {
-            alert(data);
-            window.location.reload();
-        }).catch(error => {
-            console.error('Error:', error);
+            document.getElementById('editarProducto').value = true;
         });
-    }
-}
+    });
 
-// Función para eliminar un producto de la tabla
-function deleteProduct(button) {
-    const row = button.closest('tr');
-    const referencia = row.getElementsByTagName('td')[0].innerText;
+    botonesEliminar.forEach(boton => {
+        boton.addEventListener('click', function (event) {
+            if (!confirm('¿Está seguro de que desea eliminar este producto?')) {
+                event.preventDefault();
+            }
+        });
+    });
+});
 
-    if (confirm(`¿Estás seguro de que deseas eliminar el producto con referencia ${referencia}?`)) {
-        window.location.href = `eliminar_producto.php?referencia=${referencia}`;
-    }
+function limpiarFormulario() {
+    document.getElementById('product-form').reset();
+    document.getElementById('referenciaProducto').value = "<?php echo obtenerSiguienteReferencia($conn); ?>";
+    document.getElementById('editarProducto').value = "";
 }
 </script>
-
