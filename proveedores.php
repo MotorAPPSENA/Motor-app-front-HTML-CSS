@@ -79,8 +79,11 @@ if (isset($_GET['eliminar'])) {
 require ('Apartados/Paginas/apartadoadmin.php'); 
 ?>
 
-<link rel="stylesheet" href="Estilo Apartados/formulariosAdmin.css">
+<link rel="stylesheet" href="Estilo Apartados/estiloProveedores.css">
+
+<div class="contenedores">
 <div class="contenedorFormulario">
+<h1 class="tituloContenedor">Añadir Proveedor</h1>
     <form action="proveedores.php" method="post">
         <input type="hidden" name="id_proveedor" value="<?php echo isset($proveedor['id_proveedor']) ? $proveedor['id_proveedor'] : ''; ?>">
         <div class="tituloFormulario"><label for="nombreProveedor">Nombre del Proveedor</label></div>
@@ -91,7 +94,7 @@ require ('Apartados/Paginas/apartadoadmin.php');
         <div><input class="inputFormulario" type="text" id="telefonoProveedor" name="telefono_proveedor" value="<?php echo isset($proveedor['telefono_proveedor']) ? $proveedor['telefono_proveedor'] : ''; ?>" required></div>
         <div class="tituloFormulario"><label for="emailProveedor">Email</label></div>
         <div><input class="inputFormulario" type="email" id="emailProveedor" name="email_proveedor" value="<?php echo isset($proveedor['email_proveedor']) ? $proveedor['email_proveedor'] : ''; ?>"></div>
-        <div><button class="botonAgregarFormulario" type="submit" name="<?php echo isset($proveedor) ? 'actualizarProveedor' : 'agregarProveedor'; ?>"><?php echo isset($proveedor) ? 'Actualizar' : 'Agregar'; ?></button></div>
+        <div><button class="BotonAgregar" type="submit" name="<?php echo isset($proveedor) ? 'actualizarProveedor' : 'agregarProveedor'; ?>"><?php echo isset($proveedor) ? 'Actualizar' : 'Agregar'; ?></button></div>
     </form>
 </div>
 
@@ -115,12 +118,14 @@ require ('Apartados/Paginas/apartadoadmin.php');
             <td><?php echo $proveedor['telefono_proveedor']; ?></td>
             <td><?php echo $proveedor['email_proveedor']; ?></td>
             <td>
-                <a href="proveedores.php?editar=<?php echo $proveedor['id_proveedor']; ?>">Editar</a>
-                <a href="proveedores.php?eliminar=<?php echo $proveedor['id_proveedor']; ?>">Eliminar</a>
+                <a href="proveedores.php?editar=<?php echo $proveedor['id_proveedor']; ?>" class="enlaceBoton" >Editar</a>
+                <a href="proveedores.php?eliminar=<?php echo $proveedor['id_proveedor']; ?>" class="enlaceBoton"  >Eliminar</a>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+</div>
+
 </body>
 </html>

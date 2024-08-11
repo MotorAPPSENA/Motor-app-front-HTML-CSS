@@ -6,7 +6,7 @@ $message = "";
 // Verificar si se ha solicitado la edición de una categoría
 if (isset($_GET['editar'])) {
     $id_categoria = $_GET['editar'];
-    
+
     // Obtener los datos de la categoría seleccionada
     $sql = "SELECT * FROM categoria_producto WHERE id_categoria = :id_categoria";
     $stmt = $conn->prepare($sql);
@@ -77,39 +77,47 @@ if (isset($_GET['eliminar'])) {
     }
 }
 
-require ('Apartados/Paginas/apartadoadmin.php'); 
+require ('Apartados/Paginas/apartadoadmin.php');
 ?>
 
-<link rel="stylesheet" href="Estilo Apartados/formulariosAdmin.css">
-<div class="contenedorFormulario">
-    <form action="categorias.php" method="post">
-        <input type="hidden" name="id_categoria" value="<?php echo isset($categoria['id_categoria']) ? $categoria['id_categoria'] : ''; ?>">
-        <div class="tituloFormulario"><label for="nombreCategoria">Escribe el nombre de la nueva Categoría</label></div>
-        <div><input class="inputFormulario" type="text" id="nombreCategoria" name="nombre_categoria" value="<?php echo isset($categoria['nombre_categoria']) ? $categoria['nombre_categoria'] : ''; ?>" required></div>
-        <div><button class="botonAgregarFormulario" type="submit" name="<?php echo isset($categoria) ? 'actualizarCategoria' : 'agregarCategoria'; ?>"><?php echo isset($categoria) ? 'Actualizar' : 'Agregar'; ?></button></div>
-    </form>
-</div>
+<link rel="stylesheet" href="Estilo Apartados/estiloCategorias.css">
 
-<table class="contenedorTabla">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Categoría</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($categorias as $categoria): ?>
-        <tr>
-            <td><?php echo $categoria['id_categoria']; ?></td>
-            <td><?php echo $categoria['nombre_categoria']; ?></td>
-            <td>
-                <a href="categorias.php?editar=<?php echo $categoria['id_categoria']; ?>">Editar</a>
-                <a href="categorias.php?eliminar=<?php echo $categoria['id_categoria']; ?>">Eliminar</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+<div class="contenedores">
+    <div class="contenedorFormulario">
+        <form action="categorias.php" method="post">
+            <input type="hidden" name="id_categoria"
+                value="<?php echo isset($categoria['id_categoria']) ? $categoria['id_categoria'] : ''; ?>">
+                <h1 class="tituloContenedor">Añadir Categoria</h1>
+            <div><input class="inputFormulario" type="text" id="nombreCategoria" name="nombre_categoria"
+                    value="<?php echo isset($categoria['nombre_categoria']) ? $categoria['nombre_categoria'] : ''; ?>"
+                    required></div>
+            <div><button class="BotonAgregar" type="submit"
+                    name="<?php echo isset($categoria) ? 'actualizarCategoria' : 'agregarCategoria'; ?>"><?php echo isset($categoria) ? 'Actualizar' : 'Agregar'; ?></button>
+            </div>
+        </form>
+    </div>
+    <table class="contenedorTabla">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($categorias as $categoria): ?>
+                <tr>
+                    <td><?php echo $categoria['id_categoria']; ?></td>
+                    <td><?php echo $categoria['nombre_categoria']; ?></td>
+                    <td>
+                        <a href="categorias.php?editar=<?php echo $categoria['id_categoria']; ?>" class="enlaceBoton" >Editar</a>
+                        <a href="categorias.php?eliminar=<?php echo $categoria['id_categoria']; ?>" class="enlaceBoton">Eliminar</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 </body>
+
 </html>

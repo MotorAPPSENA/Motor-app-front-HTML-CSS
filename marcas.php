@@ -70,13 +70,14 @@ if (isset($_GET['eliminar'])) {
 require ('Apartados/Paginas/apartadoadmin.php'); 
 ?>
 
-<link rel="stylesheet" href="Estilo Apartados/formulariosAdmin.css">
+<link rel="stylesheet" href="Estilo Apartados/estiloMarcas.css">
+<div class="contenedores">
 <div class="contenedorFormulario">
     <form action="marcas.php" method="post">
         <input type="hidden" name="id_marca" value="<?php echo isset($marca['id_marca']) ? $marca['id_marca'] : ''; ?>">
-        <div class="tituloFormulario"><label for="nombreMarca">Escribe el nombre de la nueva Marca</label></div>
+        <h1 class="tituloContenedor">Añadir Marca</h1>
         <div><input class="inputFormulario" type="text" id="nombreMarca" name="nombre_marca" value="<?php echo isset($marca['nombre_marca']) ? $marca['nombre_marca'] : ''; ?>" required></div>
-        <div><button class="botonAgregarFormulario" type="submit" name="<?php echo isset($marca) ? 'actualizarMarca' : 'agregarMarca'; ?>"><?php echo isset($marca) ? 'Actualizar' : 'Agregar'; ?></button></div>
+        <div><button class="BotonAgregar" type="submit" name="<?php echo isset($marca) ? 'actualizarMarca' : 'agregarMarca'; ?>"><?php echo isset($marca) ? 'Actualizar' : 'Agregar'; ?></button></div>
     </form>
 </div>
 
@@ -94,12 +95,13 @@ require ('Apartados/Paginas/apartadoadmin.php');
             <td><?php echo $marca['id_marca']; ?></td>
             <td><?php echo $marca['nombre_marca']; ?></td>
             <td>
-                <a href="marcas.php?editar=<?php echo $marca['id_marca']; ?>">Editar</a>
-                <a href="marcas.php?eliminar=<?php echo $marca['id_marca']; ?>">Eliminar</a>
+            <a href="marcas.php?editar=<?php echo $marca['id_marca']; ?>" class="enlaceBoton" >Editar</a>
+            <a href="marcas.php?eliminar=<?php echo $marca['id_marca']; ?>" class="enlaceBoton">Eliminar</a>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+</div>
 </body>
 </html>

@@ -7,7 +7,7 @@ $result = $conn->query($sql);
 ?>
 
 <?php require_once 'Apartados/Paginas/apartadoadmin.php'; ?>
-<link rel="stylesheet" href="Estilo Apartados/productos.css">
+<link rel="stylesheet" href="Estilo Apartados/estiloUsuarios.css">
 
 <div class="contenedorUsuarios">
     <div class="contenedorListaUsuarios">
@@ -39,9 +39,9 @@ $result = $conn->query($sql);
                                 <td>{$row['fecha_nacimiento']}</td>
                                 <td>{$row['rol']}</td>
                                 <td>
-                                    <button onclick=\"editUser(this)\">Editar</button>
-                                    <button onclick=\"deleteUser(this)\">Eliminar</button>
-                                    <button onclick=\"saveUser(this)\" style=\"display:none;\">Guardar</button>
+                                    <button class='BotonAgregar' onclick=\"editUser(this)\">Editar</button>
+                                    <button class='BotonAgregar' onclick=\"deleteUser(this)\">Eliminar</button>
+                                    <button class='BotonAgregar' onclick=\"saveUser(this)\" style=\"display:none;\">Guardar</button>
                                 </td>
                               </tr>";
                     }

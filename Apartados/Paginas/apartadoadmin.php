@@ -77,7 +77,7 @@ $usuario = $stmt->fetch();
                 <div class="icon">
                     <span class="iconify" data-icon="flat-color-icons:about" data-width="32" data-heigth="32"></span>
                 </div>
-                <div class="title">Clientes</div>
+                <div class="title">Usuarios</div>
             </a>
             <a href="configuracion.php">
                 <div class="icon">
