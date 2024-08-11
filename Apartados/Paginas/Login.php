@@ -10,7 +10,7 @@ if (isset($_POST['btningresar'])) {
     require_once "../../database.php"; // Asegúrate de que este archivo contenga la conexión a la base de datos
     $passwrd = $_POST["passwrd"];
 
-    $consulta = "SELECT passwrd, rol FROM usuarios WHERE n_identificacion = :usuario";
+    $consulta = "SELECT id_usuario, passwrd, rol FROM usuarios WHERE n_identificacion = :usuario";
     $statement = $conn->prepare($consulta);
 
     // Corregir los nombres de los parámetros
@@ -22,15 +22,19 @@ if (isset($_POST['btningresar'])) {
         if ($row) {
             $valorContrasena = $row["passwrd"];
             $rolUsuario = $row["rol"];
+            $id_usuario = $row["id_usuario"]; // Obtener el id_usuario del resultado
 
             if (password_verify($passwrd, $valorContrasena)) {
+                // Guardar en la sesión tanto la identificación como el id_usuario
                 $_SESSION['n_identificacion'] = $usuario;
+                $_SESSION['id_usuario'] = $id_usuario;
                 
                 if ($rolUsuario == 0 || $rolUsuario == 1) {
                     header("Location: ../../Perfil.php");
                 } else {
                     header("Location: ../../PerfilAdmin.php");
                 }
+                exit(); // Asegurarse de que el script se detenga después de redirigir
             } else {
                 $message = "Error en la autenticación"; // Mensaje de error
             }
@@ -49,8 +53,6 @@ if (isset($_POST['btningresar'])) {
 }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">

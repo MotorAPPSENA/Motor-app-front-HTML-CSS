@@ -2,7 +2,7 @@
 <footer class="footernav" >
 			<ul class="listfoot">
 				<a href="./terminosCondiciones.php" target="blank" rel="noopener noreferrer">
-					<li>Terminos de Uso y Politica de privacidad</li>
+					<li>Términos de Uso y Política de privacidad</li>
 				</a>
 				<li>
 					<div class="redesSociales">
@@ -14,7 +14,6 @@
 				</li>
 			</ul>
 	</footer>
-
 
 </body>
 

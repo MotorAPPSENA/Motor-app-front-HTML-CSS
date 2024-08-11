@@ -10,11 +10,20 @@ table {
     margin: 30px auto;
 }
 
+td {
+    border: solid 2px #000000;
+    padding: 11px;
+    color:rgb(202, 201, 201);
 
-td, th{
-    border: solid 1px #000000;
-    padding: 16px;
+}
+
+th{
+    border: solid 3px #000000;
+    padding: 11px;
     color:white;
+    backdrop-filter: blur(0.1rem);
+    background: #120e29af;
+
 }
 
 /*Estilos formulario*/

@@ -87,7 +87,7 @@ require ('Apartados/Paginas/apartadoadmin.php');
         <form action="categorias.php" method="post">
             <input type="hidden" name="id_categoria"
                 value="<?php echo isset($categoria['id_categoria']) ? $categoria['id_categoria'] : ''; ?>">
-                <h1 class="tituloContenedor">Añadir Categoria</h1>
+                <h1 class="tituloContenedor">Añadir Categoría</h1>
             <div><input class="inputFormulario" type="text" id="nombreCategoria" name="nombre_categoria"
                     value="<?php echo isset($categoria['nombre_categoria']) ? $categoria['nombre_categoria'] : ''; ?>"
                     required></div>

@@ -105,7 +105,7 @@ require ('Apartados/Paginas/apartadoadmin.php');
             <th>Proveedor</th>
             <th>Dirección</th>
             <th>Teléfono</th>
-            <th>Email</th>
+            <th>Correo electrónico</th>
             <th>Acciones</th>
         </tr>
     </thead>

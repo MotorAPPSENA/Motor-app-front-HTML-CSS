@@ -28,7 +28,7 @@
 			<div id="links" class="links">
 				<a href="index.html">Inicio</a>
 				<a href="Perfil.php">Mi perfil</a>
-				<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
+				<a href="Apartados/Paginas/Login.php">Iniciar Sesión</a>
 				<a href="Apartados/Paginas/Registro.php">Registrarse</a>
 			</div>
 		</div>
@@ -41,13 +41,13 @@
 				<a href="Perfil.php">Mi perfil</a>
 			</div>
 			<div class="secondary full">
-				<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
+				<a href="Apartados/Paginas/Login.php">Iniciar Sesión</a>
 				<a href="Apartados/Paginas/Registro.php">Registrarse</a>
 			</div>
 			<div class="secondary mini">
 				<a href="#" class="more">Menu</a>
 				<div class="submenu">
-					<a href="Apartados/Paginas/Login.php">Iniciar Sesion</a>
+					<a href="Apartados/Paginas/Login.php">Iniciar Sesión</a>
 					<a href="Apartados/Paginas/Registro.php">Registrarse</a>
 				</div>
 			</div>

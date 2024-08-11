@@ -4,6 +4,12 @@ body {
     margin: 0;
 }
 
+.contenedores{
+    display: flex;
+    align-items:start;
+    max-width: 100%;
+}
+
 .cards {
     display: flex;
     justify-content:flex-start;
@@ -54,8 +60,9 @@ body {
 
 
 .cards .flip-card .flip-card-back {
-    background-color: #000000;
-    color: white;
+    color:white;
+    backdrop-filter: blur(0.1rem);
+    background: #120e29af;
     transform: rotateY(180deg) ;
     font-size: 1.5em;
 }
@@ -72,7 +79,7 @@ img {
 
 .Mision {
     color: rgb(0, 0, 0);
-    font-size: 35px;
+    font-size: 2em;
     font-family: 'Dancing Script';
     font-family: 'Pompiere', sans-serif;
     font-family: 'Skranji', system-ui;
@@ -91,7 +98,7 @@ img {
 
 .Vision {
     color: rgb(0, 0, 0);
-    font-size: 35px;
+    font-size: 2em;
     font-family: 'Dancing Script';
     font-family: 'Pompiere', sans-serif;
     font-family: 'Skranji', system-ui;

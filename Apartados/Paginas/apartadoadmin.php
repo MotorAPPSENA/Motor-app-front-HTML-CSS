@@ -67,12 +67,6 @@ $usuario = $stmt->fetch();
                 </div>
                 <div class="title">Categorías</div>
             </a>
-            <a href="pedidos.php">
-                <div class="icon">
-                    <span class="iconify" data-icon="flat-color-icons:about" data-width="32" data-heigth="32"></span>
-                </div>
-                <div class="title">Pedidos</div>
-            </a>
             <a href="clientes.php">
                 <div class="icon">
                     <span class="iconify" data-icon="flat-color-icons:about" data-width="32" data-heigth="32"></span>
@@ -84,6 +78,12 @@ $usuario = $stmt->fetch();
                     <span class="iconify" data-icon="flat-color-icons:about" data-width="32" data-heigth="32"></span>
                 </div>
                 <div class="title">Configuración</div>
+            </a>
+            <a href="pedidos.php">
+                <div class="icon">
+                    <span class="iconify" data-icon="flat-color-icons:about" data-width="32" data-heigth="32"></span>
+                </div>
+                <div class="title">Pedidos</div>
             </a>
             <a href="index.php">
                 <div class="icon">

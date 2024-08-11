@@ -15,10 +15,10 @@ $result = $conn->query($sql);
             <thead class="encabezadosTabla">
                 <tr>
                     <th>Id Usuario</th>
-                    <th>Numero de Identificación</th>
+                    <th>Número de Identificación</th>
                     <th>Nombre</th>
                     <th>Contraseña</th>
-                    <th>Telefono</th>
+                    <th>Teléfono</th>
                     <th>Correo electrónico</th>
                     <th>Fecha de nacimiento</th>
                     <th>Rol de Usuario</th>

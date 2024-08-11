@@ -67,7 +67,7 @@
 		<!--Tarjeta #1-->
 		<div class="card">
 			<div class="header">
-				<div class="title">Calcomanias</div>
+				<div class="title">Calcomanías</div>
 			</div>
 
 			<div class="footer">
